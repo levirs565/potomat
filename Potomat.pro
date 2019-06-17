@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    timerdial.cpp
+    timerdial.cpp \
+    timer.cpp
 
 HEADERS += \
         mainwindow.h \
-    timerdial.h
+    timerdial.h \
+    timer.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
