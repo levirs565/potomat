@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include "timer.h"
 
 class MainWindow : public QMainWindow
 {
@@ -10,6 +13,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private:
+    QWidget *mCentralWidget;
+    QVBoxLayout *mCentralLayout;
+    Timer *mTimerWidget;
 };
 
 #endif // MAINWINDOW_H
