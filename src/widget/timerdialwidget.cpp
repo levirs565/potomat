@@ -1,8 +1,8 @@
-#include "timerdial.h"
+#include "timerdialwidget.h"
 #include <QPainter>
 #include <QResizeEvent>
 
-TimerDial::TimerDial(QWidget *parent) : QWidget(parent)
+TimerDialWidget::TimerDialWidget(QWidget *parent) : QWidget(parent)
 {
     mBGPen.setColor("#858c99");
     mBGPen.setWidth(2);
@@ -12,22 +12,22 @@ TimerDial::TimerDial(QWidget *parent) : QWidget(parent)
     mFillPen.setCapStyle(Qt::RoundCap);
 }
 
-void TimerDial::setPercent(float percent) {
+void TimerDialWidget::setPercent(float percent) {
     mPercent = percent;
     update();
 }
 
-float TimerDial::getPercent()
+float TimerDialWidget::getPercent()
 {
     return mPercent;
 }
 
-void TimerDial::setFillColor(QColor color)
+void TimerDialWidget::setFillColor(QColor color)
 {
     mFillPen.setColor(color);
 }
 
-void TimerDial::resizeEvent(QResizeEvent *event) {
+void TimerDialWidget::resizeEvent(QResizeEvent *event) {
     int width = event->size().width();
     int height = event->size().height();
 
@@ -41,7 +41,7 @@ void TimerDial::resizeEvent(QResizeEvent *event) {
     mRect.setHeight(wh-10);
 }
 
-void TimerDial::paintEvent(QPaintEvent *event) {
+void TimerDialWidget::paintEvent(QPaintEvent *event) {
     QPainter painter;
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);

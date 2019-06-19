@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       mCentralWidget(new QWidget(this)),
       mCentralLayout(new QVBoxLayout(mCentralWidget)),
-      mTimerWidget(new Timer(mCentralWidget)),
+      mTimerWidget(new TimerWidget(mCentralWidget)),
       mTimerButton(new QPushButton(mCentralWidget))
 {
     mTimerButton->setProperty("circle", true);

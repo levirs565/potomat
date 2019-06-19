@@ -1,10 +1,10 @@
-#include "timer.h"
+#include "timerwidget.h"
 #include <QResizeEvent>
 #include <QDebug>
 
-Timer::Timer(QWidget *parent) :
+TimerWidget::TimerWidget(QWidget *parent) :
     QWidget(parent),
-    mDial(new TimerDial(this)),
+    mDial(new TimerDialWidget(this)),
     mLabelsWidget(new QWidget(this)),
     mLabelsLayout(new QVBoxLayout(mLabelsWidget)),
     mTimeLabel(new QLabel(mLabelsWidget)),
@@ -35,7 +35,7 @@ Timer::Timer(QWidget *parent) :
     setTime(60*25, 60*25);
 }
 
-Timer::~Timer()
+TimerWidget::~TimerWidget()
 {
     delete mDialLabel;
     delete mTimeLabel;
@@ -44,18 +44,18 @@ Timer::~Timer()
     delete mDial;
 }
 
-void Timer::setTime(int remaining, int total)
+void TimerWidget::setTime(int remaining, int total)
 {
     mTimeLabel->setText(formatTime(remaining));
     mDial->setPercent((float)remaining/(float)total);
 }
 
-void Timer::setDialFillColor(QColor fill)
+void TimerWidget::setDialFillColor(QColor fill)
 {
     mDial->setFillColor(fill);
 }
 
-void Timer::resizeEvent(QResizeEvent *event)
+void TimerWidget::resizeEvent(QResizeEvent *event)
 {
     const int width = event->size().width();
     const int height = event->size().height();
@@ -68,9 +68,9 @@ void Timer::resizeEvent(QResizeEvent *event)
     mLabelsWidget->setGeometry(0, top, width, ch);
 }
 
-const QLatin1Char Timer::zeroChar = QLatin1Char('0');
+const QLatin1Char TimerWidget::zeroChar = QLatin1Char('0');
 
-QString Timer::formatTime(int s)
+QString TimerWidget::formatTime(int s)
 {
     const int minute = s / 60;
     const int second = s % 60;

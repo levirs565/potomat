@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include "../widget/timer.h"
+#include "../widget/timerwidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -17,7 +17,7 @@ public:
 private:
     QWidget *mCentralWidget;
     QVBoxLayout *mCentralLayout;
-    Timer *mTimerWidget;
+    TimerWidget *mTimerWidget;
     QPushButton *mTimerButton;
 };
 

@@ -4,14 +4,14 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
-#include "timerdial.h"
+#include "timerdialwidget.h"
 
-class Timer : public QWidget
+class TimerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Timer(QWidget *parent = nullptr);
-    ~Timer() override;
+    explicit TimerWidget(QWidget *parent = nullptr);
+    ~TimerWidget() override;
 
     void setTime(int remaining, int total);
     void setDialFillColor(QColor fill);
@@ -20,7 +20,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    TimerDial *mDial;
+    TimerDialWidget *mDial;
     QLayout *mLayout;
     QWidget *mLabelsWidget;
     QVBoxLayout *mLabelsLayout;
