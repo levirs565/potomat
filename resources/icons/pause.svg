@@ -1,0 +1,31 @@
+<svg
+	version="1.2"
+	baseProfile="tiny"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	x="0px"
+	y="0px"
+	viewBox="0 0 10.9 18"
+	xml:space="preserve"
+	height="15px">
+	<line
+		fill="none"
+		stroke="#858c99"
+		stroke-width="3"
+		stroke-linecap="round"
+		stroke-miterlimit="10"
+		x1="1.5"
+		y1="1.5"
+		x2="1.5"
+		y2="16.5"/>
+	<line
+		fill="none"
+		stroke="#858c99"
+		stroke-width="3"
+		stroke-linecap="round"
+		stroke-miterlimit="10"
+		x1="9.4"
+		y1="1.5"
+		x2="9.4"
+		y2="16.5"/>
+</svg>

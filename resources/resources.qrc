@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
         <file alias="start.svg">icons/start.svg</file>
+        <file alias="pause.svg">icons/pause.svg</file>
     </qresource>
 </RCC>
