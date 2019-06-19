@@ -20,7 +20,7 @@ void Pomodoro::start()
     reset();
     switchRound(Work);
     mTimer->start(1000);
-    updateState(Started);
+    switchState(Started);
 }
 
 void Pomodoro::pause()
@@ -29,7 +29,7 @@ void Pomodoro::pause()
         throw "Cannot pause when not started";
 
     mTimer->stop();
-    updateState(Paused);
+    switchState(Paused);
 }
 
 void Pomodoro::resume()
@@ -38,7 +38,7 @@ void Pomodoro::resume()
         throw "Cannot resume when not paused";
 
     mTimer->start(1000);
-    updateState(Started);
+    switchState(Started);
 }
 
 void Pomodoro::stop()
@@ -48,7 +48,7 @@ void Pomodoro::stop()
 
     mTimer->stop();
     reset();
-    updateState(Idle);
+    switchState(Idle);
 }
 
 QString Pomodoro::roundToString(Pomodoro::Round round)
