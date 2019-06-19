@@ -22,11 +22,6 @@ public:
 
     explicit Pomodoro(QObject *parent = nullptr);
 
-    void start();
-    void pause();
-    void resume();
-    void stop();
-
     static QString roundToString(Round round);
 
 private:
@@ -42,14 +37,20 @@ private:
     int mTimeLongBreak;
 
     void switchRound(Round round);
+    void switchState(State state);
     void callUpdateTimer();
     void reset();
 
 signals:
     void updateTimer(int remainaing, int total);
     void updateRound(Round round, int runnedRound);
+    void updateState(State state);
 
 public slots:
+    void start();
+    void pause();
+    void resume();
+    void stop();
 
 private slots:
     void intervalUpdate();
