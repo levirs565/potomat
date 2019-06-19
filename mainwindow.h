@@ -18,6 +18,7 @@ private:
     QWidget *mCentralWidget;
     QVBoxLayout *mCentralLayout;
     Timer *mTimerWidget;
+    QPushButton *mTimerButton;
 };
 
 #endif // MAINWINDOW_H
