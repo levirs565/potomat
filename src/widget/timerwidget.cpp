@@ -55,6 +55,11 @@ void TimerWidget::setDialFillColor(QColor fill)
     mDial->setFillColor(fill);
 }
 
+void TimerWidget::setLabel(QString str)
+{
+    mDialLabel->setText(str);
+}
+
 void TimerWidget::resizeEvent(QResizeEvent *event)
 {
     const int width = event->size().width();

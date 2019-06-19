@@ -15,6 +15,7 @@ public:
 
     void setTime(int remaining, int total);
     void setDialFillColor(QColor fill);
+    void setLabel(QString str);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
