@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include "timer.h"
+#include "../widget/timer.h"
 
 class MainWindow : public QMainWindow
 {

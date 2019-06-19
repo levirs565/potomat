@@ -25,15 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    timerdial.cpp \
-    timer.cpp
+        src/main.cpp \
+        src/window/mainwindow.cpp \
+    src/widget/timerdial.cpp \
+    src/widget/timer.cpp
 
 HEADERS += \
-        mainwindow.h \
-    timerdial.h \
-    timer.h
+        src/window/mainwindow.h \
+    src/widget/timerdial.h \
+    src/widget/timer.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
