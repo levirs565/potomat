@@ -3,7 +3,7 @@
 Pomodoro::Pomodoro(QObject *parent)
     : QObject(parent),
       mTimer(new QTimer(this)),
-      mCurrentState(Idle)
+      mCurrentState(Idle),
       mWorkRounds(1),
       mTimeWork(1),
       mTimeShortBreak(1),
@@ -20,7 +20,7 @@ void Pomodoro::start()
     reset();
     switchRound(Work);
     mTimer->start(1000);
-    mCurrentState = Started;
+    updateState(Started);
 }
 
 void Pomodoro::pause()
@@ -29,7 +29,7 @@ void Pomodoro::pause()
         throw "Cannot pause when not started";
 
     mTimer->stop();
-    mCurrentState = Paused;
+    updateState(Paused);
 }
 
 void Pomodoro::resume()
@@ -38,7 +38,7 @@ void Pomodoro::resume()
         throw "Cannot resume when not paused";
 
     mTimer->start(1000);
-    mCurrentState = Started;
+    updateState(Started);
 }
 
 void Pomodoro::stop()
@@ -48,7 +48,7 @@ void Pomodoro::stop()
 
     mTimer->stop();
     reset();
-    mCurrentState = Idle;
+    updateState(Idle);
 }
 
 QString Pomodoro::roundToString(Pomodoro::Round round)
@@ -76,6 +76,12 @@ void Pomodoro::switchRound(Pomodoro::Round round)
 
     emit updateRound(mCurrentRound, mRound);
     callUpdateTimer();
+}
+
+void Pomodoro::switchState(Pomodoro::State state)
+{
+    mCurrentState = state;
+    emit updateState(state);
 }
 
 void Pomodoro::callUpdateTimer()
