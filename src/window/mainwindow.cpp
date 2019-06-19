@@ -5,13 +5,23 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
+      mPomodoro(new Pomodoro(this)),
       mCentralWidget(new QWidget(this)),
       mCentralLayout(new QVBoxLayout(mCentralWidget)),
       mTimerWidget(new TimerWidget(mCentralWidget)),
-      mTimerButton(new QPushButton(mCentralWidget))
+      mTimerButton(new QPushButton(mCentralWidget)),
+      mStartIcon(":icons/start.svg"),
+      mPauseIcon(":icons/pause.svg")
 {
+    connect(mPomodoro, &Pomodoro::updateTimer,
+            this, &MainWindow::pomodoroUpdateTimer);
+    connect(mPomodoro, &Pomodoro::updateRound,
+            this, &MainWindow::pomodoroUpdateRound);
+    connect(mPomodoro, &Pomodoro::updateState,
+            this, &MainWindow::pomodoroUpdateState);
+
     mTimerButton->setProperty("circle", true);
-    mTimerButton->setIcon(QIcon(":icons/start.svg"));
+    pomodoroUpdateState(Pomodoro::Idle);
 
     mCentralLayout->addWidget(mTimerWidget, 0, Qt::AlignCenter);
     mCentralLayout->addWidget(mTimerButton, 0, Qt::AlignCenter);
@@ -36,4 +46,35 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 
+}
+
+void MainWindow::pomodoroUpdateTimer(int remaining, int total)
+{
+    mTimerWidget->setTime(remaining, total);
+}
+
+void MainWindow::pomodoroUpdateRound(Pomodoro::Round round, int runnedRound)
+{
+    QString str = Pomodoro::roundToString(round);
+    mTimerWidget->setLabel(str);
+}
+
+void MainWindow::pomodoroUpdateState(Pomodoro::State state)
+{
+    mTimerButton->disconnect(SIGNAL(clicked()));
+
+    if (state == Pomodoro::Idle || state == Pomodoro::Paused) {
+        if (state == Pomodoro::Idle)
+            connect(mTimerButton, SIGNAL(clicked()),
+                    mPomodoro, SLOT(start()));
+        else
+            connect(mTimerButton, SIGNAL(clicked()),
+                    mPomodoro, SLOT(resume()));
+
+        mTimerButton->setIcon(mStartIcon);
+    } else {
+        connect(mTimerButton, SIGNAL(clicked()),
+                mPomodoro, SLOT(pause()));
+        mTimerButton->setIcon(mPauseIcon);
+    }
 }
