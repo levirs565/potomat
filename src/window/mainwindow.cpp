@@ -18,20 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     pomodoroUpdateState(Pomodoro::Idle);
 
-    setStyleSheet("QPushButton[circle=\"true\"] {"
-                  " border-width: 2px;"
-                  " border-color: #858c99;"
-                  " border-style: solid;"
-                  " border-radius: 27px;"
-                  " width: 50px;"
-                  " height: 50px;"
-                  " color: #ffffff;"
-                  "}"
-                  ""
-                  "QPushButton[circle=\"true\"]:hover {"
-                  " background-color: #3d4457;"
-                  "}");
-
     setCentralWidget(mUI->centralWidget);
 }
 
