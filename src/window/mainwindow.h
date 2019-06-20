@@ -22,7 +22,8 @@ private:
 
 private slots:
     void pomodoroUpdateTimer(int remaining, int total);
-    void pomodoroUpdateRound(Pomodoro::Round round, int runnedRound);
+    void pomodoroUpdateRound(Pomodoro::Round round, int runnedRound,
+                             int worksRound);
     void pomodoroUpdateState(Pomodoro::State state);
 };
 
