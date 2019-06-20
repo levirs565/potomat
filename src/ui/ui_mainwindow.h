@@ -20,6 +20,13 @@ public:
     TimerWidget *timerWidget;
     QPushButton *timerButton;
 
+    QWidget *footerWidget;
+    QHBoxLayout *footerLayout;
+    QWidget *footerLeftWidget;
+    QVBoxLayout *footerLeftLayout;
+    QLabel *footerLeftLabelWidget;
+    QPushButton *footerLeftButtonWidget;
+
     void setState(Pomodoro::State state);
 
 private:
