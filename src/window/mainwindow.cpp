@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::pomodoroUpdateRound);
     connect(mPomodoro, &Pomodoro::updateState,
             this, &MainWindow::pomodoroUpdateState);
+    mPomodoro->startIntegration();
 
     mTimerButton->setProperty("circle", true);
     pomodoroUpdateState(Pomodoro::Idle);

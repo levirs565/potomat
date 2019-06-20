@@ -12,6 +12,11 @@ Pomodoro::Pomodoro(QObject *parent)
     connect(mTimer, SIGNAL(timeout()), this, SLOT(intervalUpdate()));
 }
 
+void Pomodoro::startIntegration()
+{
+    switchRound(Work);
+}
+
 void Pomodoro::start()
 {
     if (mCurrentState != Idle)

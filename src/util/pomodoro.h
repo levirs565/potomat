@@ -22,6 +22,8 @@ public:
 
     explicit Pomodoro(QObject *parent = nullptr);
 
+    void startIntegration();
+
     static QString roundToString(Round round);
 
 private:
