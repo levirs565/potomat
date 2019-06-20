@@ -45,7 +45,7 @@ private:
 
 signals:
     void updateTimer(int remainaing, int total);
-    void updateRound(Round round, int runnedRound);
+    void updateRound(Round round, int runnedRound, int workRound);
     void updateState(State state);
 
 public slots:

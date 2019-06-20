@@ -4,6 +4,7 @@ Pomodoro::Pomodoro(QObject *parent)
     : QObject(parent),
       mTimer(new QTimer(this)),
       mCurrentState(Idle),
+      mRound(0),
       mWorkRounds(1),
       mTimeWork(1),
       mTimeShortBreak(1),
@@ -79,7 +80,7 @@ void Pomodoro::switchRound(Pomodoro::Round round)
 
     mCurrentRemaining = mCurrentTotal;
 
-    emit updateRound(mCurrentRound, mRound);
+    emit updateRound(mCurrentRound, mRound, mWorkRounds);
     callUpdateTimer();
 }
 
