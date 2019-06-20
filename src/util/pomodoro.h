@@ -53,6 +53,7 @@ public slots:
     void pause();
     void resume();
     void stop();
+    void resetTimer();
 
 private slots:
     void intervalUpdate();

@@ -57,6 +57,17 @@ void Pomodoro::stop()
     switchState(Idle);
 }
 
+void Pomodoro::resetTimer()
+{
+    if (mCurrentState == Idle)
+        throw "Cannot reset timer. Timer is idle";
+
+    mTimer->stop();
+    mCurrentRemaining = mCurrentTotal;
+    switchState(Idle);
+    callUpdateTimer();
+}
+
 QString Pomodoro::roundToString(Pomodoro::Round round)
 {
     if (round == Work)
