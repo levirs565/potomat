@@ -28,41 +28,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::pomodoroUpdateTimer(int remaining, int total)
 {
-    mUI->timerWidget->setTime(remaining, total);
+    mUI->setTime(remaining, total);
 }
 
 void MainWindow::pomodoroUpdateRound(Pomodoro::Round round, int runnedRound,
                                      int worksRound)
 {
-    QString str = Pomodoro::roundToString(round);
-    mUI->timerWidget->setLabel(str);
-    mUI->footerLeftLabelWidget->setText(
-                QString("%1/%2")
-                    .arg(runnedRound)
-                    .arg(worksRound));
+    mUI->setRound(round, runnedRound, worksRound);
 }
 
 void MainWindow::pomodoroUpdateState(Pomodoro::State state)
 {
-    mUI->timerButton->disconnect(SIGNAL(clicked()));
-    mUI->footerLeftButtonWidget->disconnect(SIGNAL(clicked()));
-
-    const char *amember;
+    const char *buttonSlot = nullptr;
+    const char *resetSlot = nullptr;
 
     if (state == Pomodoro::Idle)
-        amember = SLOT(start());
+        buttonSlot = SLOT(start());
     else {
         if (state == Pomodoro::Paused)
-            amember = SLOT(resume());
+            buttonSlot = SLOT(resume());
         else
-            amember = SLOT(pause());
+            buttonSlot = SLOT(pause());
 
-        connect(mUI->footerLeftButtonWidget, SIGNAL(clicked()),
-                mPomodoro, SLOT(resetTimer()));
+        resetSlot = SLOT(resetTimer());
     }
 
 
-    connect(mUI->timerButton, SIGNAL(clicked()), mPomodoro, amember);
+    mUI->setTimerButtonClickSlot(mPomodoro, buttonSlot);
+    mUI->setResetButtonClickSlot(mPomodoro, resetSlot);
     mUI->setState(state);
 }
 

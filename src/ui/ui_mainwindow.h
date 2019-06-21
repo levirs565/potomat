@@ -28,6 +28,11 @@ public:
     QPushButton *footerLeftButtonWidget;
 
     void setState(Pomodoro::State state);
+    void setRound(Pomodoro::Round round, int runnedRound,
+                  int worksRound);
+    void setTime(int remainingTime, int totalTimer);
+    void setTimerButtonClickSlot(QObject *receiver, const char* amember);
+    void setResetButtonClickSlot(QObject *receiver, const char* amember);
 
 private:
     QIcon mStartIcon;

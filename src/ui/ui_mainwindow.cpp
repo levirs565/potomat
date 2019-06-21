@@ -1,4 +1,5 @@
 #include "ui_mainwindow.h"
+#include "../util/helper.h"
 #include <QWindow>
 #include <QWidget>
 #include <QVariant>
@@ -50,4 +51,37 @@ void UI_MainWindow::setState(Pomodoro::State state)
     } else {
         timerButton->setIcon(mPauseIcon);
     }
+}
+
+void UI_MainWindow::setRound(Pomodoro::Round round, int runnedRound, int worksRound)
+{
+    QString label;
+
+    if (round == Pomodoro::Work)
+        label = "Work";
+    else if (round == Pomodoro::ShortBreak)
+        label = "Short Break";
+    else
+        label = "Long Break";
+
+    timerWidget->setLabel(label);
+    footerLeftLabelWidget->setText(
+                QString("%1/%2")
+                    .arg(runnedRound)
+                .arg(worksRound));
+}
+
+void UI_MainWindow::setTime(int remainingTime, int totalTimer)
+{
+    timerWidget->setTime(remainingTime, totalTimer);
+}
+
+void UI_MainWindow::setTimerButtonClickSlot(QObject *receiver, const char *amember)
+{
+    setConnection(timerButton, SIGNAL(clicked()), receiver, amember);
+}
+
+void UI_MainWindow::setResetButtonClickSlot(QObject *receiver, const char *amember)
+{
+    setConnection(footerLeftButtonWidget, SIGNAL(clicked()), receiver, amember);
 }

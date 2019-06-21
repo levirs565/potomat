@@ -30,14 +30,16 @@ SOURCES += \
     src/widget/timerwidget.cpp \
     src/widget/timerdialwidget.cpp \
     src/util/pomodoro.cpp \
-    src/ui/ui_mainwindow.cpp
+    src/ui/ui_mainwindow.cpp \
+    src/util/helper.cpp
 
 HEADERS += \
         src/window/mainwindow.h \
     src/widget/timerwidget.h \
     src/widget/timerdialwidget.h \
     src/util/pomodoro.h \
-    src/ui/ui_mainwindow.h
+    src/ui/ui_mainwindow.h \
+    src/util/helper.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
