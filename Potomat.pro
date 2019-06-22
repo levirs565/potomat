@@ -32,7 +32,10 @@ SOURCES += \
     src/util/pomodoro.cpp \
     src/ui/ui_mainwindow.cpp \
     src/util/helper.cpp \
-    src/view/timerview.cpp
+    src/view/timerview.cpp \
+    src/view/drawerview.cpp \
+    src/view/configurationview.cpp \
+    src/widget/sliderwidget.cpp
 
 HEADERS += \
         src/window/mainwindow.h \
@@ -41,7 +44,10 @@ HEADERS += \
     src/util/pomodoro.h \
     src/ui/ui_mainwindow.h \
     src/util/helper.h \
-    src/view/timerview.h
+    src/view/timerview.h \
+    src/view/drawerview.h \
+    src/view/configurationview.h \
+    src/widget/sliderwidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
