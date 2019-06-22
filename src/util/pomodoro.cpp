@@ -1,4 +1,5 @@
 #include "pomodoro.h"
+#include <QDebug>
 
 Pomodoro::Pomodoro(QObject *parent)
     : QObject(parent),
@@ -16,6 +17,36 @@ Pomodoro::Pomodoro(QObject *parent)
 void Pomodoro::startIntegration()
 {
     switchRound(Work);
+}
+
+int Pomodoro::getConfig(QString name)
+{
+    if (name == "workRounds")
+        return mWorkRounds;
+    else if (name == "timeWork")
+        return mTimeWork;
+    else if (name == "timeShortBreak")
+        return mTimeShortBreak;
+    else if (name == "timerLongBreak")
+        return mTimeLongBreak;
+
+    qWarning() << name << " configutation not found cannot get";
+
+    return 0;
+}
+
+void Pomodoro::setConfig(QString name, int value)
+{
+    if (name == "workRounds")
+        mWorkRounds = value;
+    else if (name == "timeWork")
+        mTimeWork = value;
+    else if (name == "timeShortBreak")
+        mTimeShortBreak = value;
+    else if (name == "timerLongBreak")
+        mTimeLongBreak = value;
+
+    qWarning() << name << " configutation not found cannot set";
 }
 
 void Pomodoro::start()

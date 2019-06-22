@@ -23,6 +23,8 @@ public:
     explicit Pomodoro(QObject *parent = nullptr);
 
     void startIntegration();
+    int getConfig(QString name);
+    void setConfig(QString name, int value);
 
     static QString roundToString(Round round);
 
