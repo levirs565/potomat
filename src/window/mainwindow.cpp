@@ -28,13 +28,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::pomodoroUpdateTimer(int remaining, int total)
 {
-    mUI->setTime(remaining, total);
+    mUI->timerView->setTime(remaining, total);
 }
 
 void MainWindow::pomodoroUpdateRound(Pomodoro::Round round, int runnedRound,
                                      int worksRound)
 {
-    mUI->setRound(round, runnedRound, worksRound);
+    mUI->timerView->setRound(round, runnedRound, worksRound);
 }
 
 void MainWindow::pomodoroUpdateState(Pomodoro::State state)
@@ -54,8 +54,8 @@ void MainWindow::pomodoroUpdateState(Pomodoro::State state)
     }
 
 
-    mUI->setTimerButtonClickSlot(mPomodoro, buttonSlot);
-    mUI->setResetButtonClickSlot(mPomodoro, resetSlot);
-    mUI->setState(state);
+    mUI->timerView->setTimerButtonClickSlot(mPomodoro, buttonSlot);
+    mUI->timerView->setResetButtonClickSlot(mPomodoro, resetSlot);
+    mUI->timerView->setState(state);
 }
 
