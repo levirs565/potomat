@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTabWidget>
 #include "configurationview.h"
+#include "aboutview.h"
 
 class DrawerView : public QTabWidget
 {
@@ -12,6 +13,7 @@ public:
     explicit DrawerView(QWidget *parent = nullptr);
 
     ConfigurationView *configView;
+    AboutView *aboutView;
 
 signals:
 
