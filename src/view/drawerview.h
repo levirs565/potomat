@@ -5,6 +5,7 @@
 #include <QTabWidget>
 #include "configurationview.h"
 #include "aboutview.h"
+#include "../widget/swtabbar.h"
 
 class DrawerView : public QTabWidget
 {
@@ -14,6 +15,7 @@ public:
 
     ConfigurationView *configView;
     AboutView *aboutView;
+    SWTabBar *swTabBar;
 
 signals:
 
