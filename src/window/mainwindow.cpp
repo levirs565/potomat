@@ -16,6 +16,15 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::pomodoroUpdateState);
     mPomodoro->startIntegration();
 
+    mUI->drawerView->configView->setConfiguration(
+                mPomodoro->getConfig("timeWork"),
+                mPomodoro->getConfig("timeShortBreak"),
+                mPomodoro->getConfig("timerLongBreak"),
+                mPomodoro->getConfig("workRounds")
+    );
+    connect(mUI->drawerView->configView, SIGNAL(configChanged(QString,int)),
+            mPomodoro, SLOT(setConfig(QString,int)));
+
     pomodoroUpdateState(Pomodoro::Idle);
 
     setCentralWidget(mUI->centralWidget);
