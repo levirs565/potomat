@@ -69,37 +69,44 @@ void Pomodoro::resetTimer()
     callUpdateTimer();
 }
 
-int Pomodoro::getConfig(QString name)
+const QString Pomodoro::allConfigs[4] = {
+    "workRounds",
+    "timeWork",
+    "timeShortBreak",
+    "timerLongBreak"
+};
+
+int Pomodoro::getConfig(int index)
 {
-    if (name == "workRounds")
+    if (index == 0)
         return mWorkRounds;
-    else if (name == "timeWork")
+    else if (index == 1)
         return mTimeWork;
-    else if (name == "timeShortBreak")
+    else if (index == 2)
         return mTimeShortBreak;
-    else if (name == "timerLongBreak")
+    else if (index == 3)
         return mTimeLongBreak;
 
-    qWarning() << name << " configutation not found cannot get";
+    qWarning() << index << " configutation not found cannot get";
 
     return 0;
 }
 
-void Pomodoro::setConfig(QString name, int value)
+void Pomodoro::setConfig(int index, int value)
 {
     bool shouldUpdateRound = false;
 
-    if (name == "workRounds") {
+    if (index == 0) {
         mWorkRounds = value;
         shouldUpdateRound = true;
-    } else if (name == "timeWork")
+    } else if (index == 1)
         mTimeWork = value;
-    else if (name == "timeShortBreak")
+    else if (index == 2)
         mTimeShortBreak = value;
-    else if (name == "timerLongBreak")
+    else if (index == 3)
         mTimeLongBreak = value;
     else
-        qWarning() << name << " configutation not found cannot set";
+        qWarning() << index << " configutation not found cannot set";
 
     updateConfig(shouldUpdateRound);
 }

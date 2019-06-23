@@ -5,18 +5,18 @@ ConfigurationView::ConfigurationView(QWidget *parent)
     : QWidget(parent),
       layout(new QVBoxLayout(this)),
       header(new QLabel(this)),
-      workSlider(new SliderWidget(this, "Work", "timeWork", 1, 60, 25)),
-      shortBreakSlider(new SliderWidget(this, "Short Break", "timeShortBreak", 1, 60, 5)),
-      longBreakSlider(new SliderWidget(this, "Long Break", "timerLongBreak", 1, 60, 15)),
-      roundsSlider(new SliderWidget(this, "Rounds", "workRounds", 1, 12, 4)),
+      workSlider(new SliderWidget(this, "Work", 1, 1, 60, 25)),
+      shortBreakSlider(new SliderWidget(this, "Short Break", 2, 1, 60, 5)),
+      longBreakSlider(new SliderWidget(this, "Long Break", 3, 1, 60, 15)),
+      roundsSlider(new SliderWidget(this, "Rounds", 0, 1, 12, 4)),
       resetButton(new QPushButton(this))
 {
     header->setText("Timer");
 
     resetButton->setText("Reset Defaults");
 
-    const char *signal = SIGNAL(valueChanged(QString,int));
-    const char *slot = SLOT(valueChanged(QString,int));
+    const char *signal = SIGNAL(valueChanged(int,int));
+    const char *slot = SLOT(valueChanged(int,int));
 
     connect(workSlider, signal, this, slot);
     connect(shortBreakSlider, signal, this, slot);
@@ -40,7 +40,7 @@ void ConfigurationView::setConfiguration(int timeWork, int timeShortBreak, int t
     roundsSlider->setValue(workRounds);
 }
 
-void ConfigurationView::valueChanged(QString config, int value)
+void ConfigurationView::valueChanged(int config, int value)
 {
     emit configChanged(config, value);
 }

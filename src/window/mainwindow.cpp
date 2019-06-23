@@ -17,13 +17,13 @@ MainWindow::MainWindow(QWidget *parent)
     mPomodoro->startIntegration();
 
     mUI->drawerView->configView->setConfiguration(
-                mPomodoro->getConfig("timeWork"),
-                mPomodoro->getConfig("timeShortBreak"),
-                mPomodoro->getConfig("timerLongBreak"),
-                mPomodoro->getConfig("workRounds")
+                mPomodoro->getConfig(1),
+                mPomodoro->getConfig(2),
+                mPomodoro->getConfig(3),
+                mPomodoro->getConfig(0)
     );
-    connect(mUI->drawerView->configView, SIGNAL(configChanged(QString,int)),
-            mPomodoro, SLOT(setConfig(QString,int)));
+    connect(mUI->drawerView->configView, SIGNAL(configChanged(int,int)),
+            mPomodoro, SLOT(setConfig(int,int)));
     connect(mUI->drawerView->configView->resetButton, SIGNAL(clicked()),
             this, SLOT(resetConfig()));
 

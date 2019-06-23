@@ -23,10 +23,10 @@ public:
     void setConfiguration(int timeWork, int timeShortBreak, int timeLongBreak, int workRounds);
 
 signals:
-    void configChanged(QString config, int value);
+    void configChanged(int config, int value);
 
 private slots:
-    void valueChanged(QString config, int value);
+    void valueChanged(int config, int value);
 };
 
 #endif // POMODOROCONFIGVIEW_H

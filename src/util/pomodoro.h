@@ -30,6 +30,7 @@ public:
     static const int defaultTimeShortBreak = 5;
     static const int defaultTimeLongBreak = 15;
     static const int defaultWorkRounds = 4;
+    static const QString allConfigs[4];
 
 private:
     QTimer *mTimer;
@@ -61,8 +62,8 @@ public slots:
     void stop();
     void resetTimer();
 
-    int getConfig(QString name);
-    void setConfig(QString name, int value);
+    int getConfig(int index);
+    void setConfig(int index, int value);
 
 private slots:
     void intervalUpdate();

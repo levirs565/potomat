@@ -1,14 +1,14 @@
 #include "sliderwidget.h"
 #include <QDebug>
 
-SliderWidget::SliderWidget(QWidget *parent, QString title, QString configName, int min,
+SliderWidget::SliderWidget(QWidget *parent, QString title, int configIndex, int min,
                            int max, int value)
     : QWidget(parent),
       layout(new QVBoxLayout(this)),
       titleLabel(new QLabel(this)),
       valueLabel(new QLabel(this)),
       slider(new QSlider(Qt::Horizontal, this)),
-      mConfigName(configName)
+      mConfigIndex(configIndex)
 {
     titleLabel->setText(title);
 
@@ -32,5 +32,5 @@ void SliderWidget::sliderValueChanged(int value)
 {
     valueLabel->setText(QString::number(value));
 
-    emit valueChanged(mConfigName, value);
+    emit valueChanged(mConfigIndex, value);
 }

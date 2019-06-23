@@ -10,7 +10,7 @@ class SliderWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SliderWidget(QWidget *parent = nullptr, QString title = "", QString configName = "",
+    explicit SliderWidget(QWidget *parent = nullptr, QString title = "", int configIndex = 0,
                           int min = 0, int max = 0, int value = 0);
 
     QVBoxLayout *layout;
@@ -21,10 +21,10 @@ public:
     void setValue(int value);
 
 private:
-    QString mConfigName;
+    int mConfigIndex;
 
 signals:
-    void valueChanged(QString config, int value);
+    void valueChanged(int config, int value);
 
 public slots:
     void sliderValueChanged(int value);
