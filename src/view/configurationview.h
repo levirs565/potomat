@@ -20,9 +20,13 @@ public:
     SliderWidget *roundsSlider;
     QPushButton *resetButton;
 
-signals:
+    void setConfiguration(int timeWork, int timeShortBreak, int timeLongBreak, int workRounds);
 
-public slots:
+signals:
+    void configChanged(QString config, int value);
+
+private slots:
+    void valueChanged(QString config, int value);
 };
 
 #endif // POMODOROCONFIGVIEW_H
