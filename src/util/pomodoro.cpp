@@ -19,36 +19,6 @@ void Pomodoro::startIntegration()
     switchRound(Work);
 }
 
-int Pomodoro::getConfig(QString name)
-{
-    if (name == "workRounds")
-        return mWorkRounds;
-    else if (name == "timeWork")
-        return mTimeWork;
-    else if (name == "timeShortBreak")
-        return mTimeShortBreak;
-    else if (name == "timerLongBreak")
-        return mTimeLongBreak;
-
-    qWarning() << name << " configutation not found cannot get";
-
-    return 0;
-}
-
-void Pomodoro::setConfig(QString name, int value)
-{
-    if (name == "workRounds")
-        mWorkRounds = value;
-    else if (name == "timeWork")
-        mTimeWork = value;
-    else if (name == "timeShortBreak")
-        mTimeShortBreak = value;
-    else if (name == "timerLongBreak")
-        mTimeLongBreak = value;
-
-    qWarning() << name << " configutation not found cannot set";
-}
-
 void Pomodoro::start()
 {
     if (mCurrentState != Idle)
@@ -99,6 +69,41 @@ void Pomodoro::resetTimer()
     callUpdateTimer();
 }
 
+int Pomodoro::getConfig(QString name)
+{
+    if (name == "workRounds")
+        return mWorkRounds;
+    else if (name == "timeWork")
+        return mTimeWork;
+    else if (name == "timeShortBreak")
+        return mTimeShortBreak;
+    else if (name == "timerLongBreak")
+        return mTimeLongBreak;
+
+    qWarning() << name << " configutation not found cannot get";
+
+    return 0;
+}
+
+void Pomodoro::setConfig(QString name, int value)
+{
+    bool shouldUpdateRound = false;
+
+    if (name == "workRounds") {
+        mWorkRounds = value;
+        shouldUpdateRound = true;
+    } else if (name == "timeWork")
+        mTimeWork = value;
+    else if (name == "timeShortBreak")
+        mTimeShortBreak = value;
+    else if (name == "timerLongBreak")
+        mTimeLongBreak = value;
+    else
+        qWarning() << name << " configutation not found cannot set";
+
+    updateConfig(shouldUpdateRound);
+}
+
 QString Pomodoro::roundToString(Pomodoro::Round round)
 {
     if (round == Work)
@@ -140,6 +145,17 @@ void Pomodoro::callUpdateTimer()
 void Pomodoro::reset()
 {
     mRound = 1;
+}
+
+void Pomodoro::updateConfig(bool shouldUpdateRound)
+{
+    if (mCurrentState == Idle) {
+        switchRound(mCurrentRound);
+    }
+
+    if (shouldUpdateRound) {
+        emit updateRound(mCurrentRound, mRound, mWorkRounds);
+    }
 }
 
 void Pomodoro::intervalUpdate()

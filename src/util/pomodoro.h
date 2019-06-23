@@ -23,8 +23,6 @@ public:
     explicit Pomodoro(QObject *parent = nullptr);
 
     void startIntegration();
-    int getConfig(QString name);
-    void setConfig(QString name, int value);
 
     static QString roundToString(Round round);
 
@@ -44,6 +42,7 @@ private:
     void switchState(State state);
     void callUpdateTimer();
     void reset();
+    void updateConfig(bool shouldUpdateRound);
 
 signals:
     void updateTimer(int remainaing, int total);
@@ -56,6 +55,9 @@ public slots:
     void resume();
     void stop();
     void resetTimer();
+
+    int getConfig(QString name);
+    void setConfig(QString name, int value);
 
 private slots:
     void intervalUpdate();
