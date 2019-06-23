@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     );
     connect(mUI->drawerView->configView, SIGNAL(configChanged(QString,int)),
             mPomodoro, SLOT(setConfig(QString,int)));
+    connect(mUI->drawerView->configView->resetButton, SIGNAL(clicked()),
+            this, SLOT(resetConfig()));
 
     pomodoroUpdateState(Pomodoro::Idle);
 
@@ -66,5 +68,15 @@ void MainWindow::pomodoroUpdateState(Pomodoro::State state)
     mUI->timerView->setTimerButtonClickSlot(mPomodoro, buttonSlot);
     mUI->timerView->setResetButtonClickSlot(mPomodoro, resetSlot);
     mUI->timerView->setState(state);
+}
+
+void MainWindow::resetConfig()
+{
+    mUI->drawerView->configView->setConfiguration(
+                Pomodoro::defaultTimeWork,
+                Pomodoro::defaultTimeShortBreak,
+                Pomodoro::defaultTimeLongBreak,
+                Pomodoro::defaultWorkRounds
+                );
 }
 

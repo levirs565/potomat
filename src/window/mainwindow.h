@@ -25,6 +25,7 @@ private slots:
     void pomodoroUpdateRound(Pomodoro::Round round, int runnedRound,
                              int worksRound);
     void pomodoroUpdateState(Pomodoro::State state);
+    void resetConfig();
 };
 
 #endif // MAINWINDOW_H
