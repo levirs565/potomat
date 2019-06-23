@@ -6,10 +6,10 @@ Pomodoro::Pomodoro(QObject *parent)
       mTimer(new QTimer(this)),
       mCurrentState(Idle),
       mRound(0),
-      mWorkRounds(1),
-      mTimeWork(1),
-      mTimeShortBreak(1),
-      mTimeLongBreak(1)
+      mWorkRounds(defaultWorkRounds),
+      mTimeWork(defaultTimeWork),
+      mTimeShortBreak(defaultTimeShortBreak),
+      mTimeLongBreak(defaultTimeLongBreak)
 {
     connect(mTimer, SIGNAL(timeout()), this, SLOT(intervalUpdate()));
 }

@@ -26,6 +26,11 @@ public:
 
     static QString roundToString(Round round);
 
+    static const int defaultTimeWork = 25;
+    static const int defaultTimeShortBreak = 5;
+    static const int defaultTimeLongBreak = 15;
+    static const int defaultWorkRounds = 4;
+
 private:
     QTimer *mTimer;
     Round mCurrentRound;
