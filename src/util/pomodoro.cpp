@@ -69,7 +69,7 @@ void Pomodoro::resetTimer()
     callUpdateTimer();
 }
 
-const QString Pomodoro::allConfigs[4] = {
+const QStringList Pomodoro::allConfigs = {
     "workRounds",
     "timeWork",
     "timeShortBreak",
