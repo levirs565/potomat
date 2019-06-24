@@ -3,11 +3,13 @@
 #include <QImageReader>
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent, Configuration& config)
     : QMainWindow(parent),
       mPomodoro(new Pomodoro(this)),
-      mUI(new UI_MainWindow(this))
+      mUI(new UI_MainWindow(this)),
+      mConfig(config)
 {
+    mPomodoro->loadConfig(mConfig);
     connect(mPomodoro, &Pomodoro::updateTimer,
             this, &MainWindow::pomodoroUpdateTimer);
     connect(mPomodoro, &Pomodoro::updateRound,
@@ -22,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
                 mPomodoro->getConfig(3),
                 mPomodoro->getConfig(0)
     );
+    qDebug() << mPomodoro->getConfig(0);
     connect(mUI->drawerView->configView, SIGNAL(configChanged(int,int)),
             mPomodoro, SLOT(setConfig(int,int)));
     connect(mUI->drawerView->configView->resetButton, SIGNAL(clicked()),
@@ -34,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-
+    mPomodoro->saveConfig(mConfig);
 }
 
 void MainWindow::pomodoroUpdateTimer(int remaining, int total)

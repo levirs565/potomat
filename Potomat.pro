@@ -37,7 +37,8 @@ SOURCES += \
     src/view/configurationview.cpp \
     src/widget/sliderwidget.cpp \
     src/view/aboutview.cpp \
-    src/widget/swtabbar.cpp
+    src/widget/swtabbar.cpp \
+    src/util/configuration.cpp
 
 HEADERS += \
         src/window/mainwindow.h \
@@ -51,7 +52,8 @@ HEADERS += \
     src/view/configurationview.h \
     src/widget/sliderwidget.h \
     src/view/aboutview.h \
-    src/widget/swtabbar.h
+    src/widget/swtabbar.h \
+    src/util/configuration.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

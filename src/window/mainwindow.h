@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include "../widget/timerwidget.h"
 #include "../util/pomodoro.h"
+#include "../util/configuration.h"
 #include "../ui/ui_mainwindow.h"
 
 class MainWindow : public QMainWindow
@@ -13,12 +14,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = 0, Configuration& config = *new Configuration());
     ~MainWindow();
 
 private:
     Pomodoro *mPomodoro;
     UI_MainWindow *mUI;
+    Configuration& mConfig;
 
 private slots:
     void pomodoroUpdateTimer(int remaining, int total);

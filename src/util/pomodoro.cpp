@@ -121,6 +121,23 @@ QString Pomodoro::roundToString(Pomodoro::Round round)
     return "Long Break";
 }
 
+void Pomodoro::loadConfig(Configuration &config)
+{
+    for (int i = 0; i < allConfigs.length(); i++) {
+        QVariant var = config.getConfig(allConfigs[i]);
+
+        if (var.canConvert(QVariant::Int))
+            setConfig(i, var.toInt());
+    }
+}
+
+void Pomodoro::saveConfig(Configuration &config)
+{
+   for (int i = 0; i < allConfigs.length(); i++) {
+       config.setConfig(allConfigs[i], getConfig(i));
+   }
+}
+
 void Pomodoro::switchRound(Pomodoro::Round round)
 {
     mCurrentRound = round;

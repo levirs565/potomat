@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include "configuration.h"
 
 class Pomodoro : public QObject
 {
@@ -31,6 +32,9 @@ public:
     static const int defaultTimeLongBreak = 15;
     static const int defaultWorkRounds = 4;
     static const QStringList allConfigs;
+
+    void loadConfig(Configuration& config);
+    void saveConfig(Configuration& config);
 
 private:
     QTimer *mTimer;
