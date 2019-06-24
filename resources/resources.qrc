@@ -1,9 +1,8 @@
 <RCC>
-    <qresource prefix="/icons">
-        <file alias="start.svg">icons/start.svg</file>
-        <file alias="pause.svg">icons/pause.svg</file>
-    </qresource>
     <qresource prefix="/styles">
         <file alias="base.css">styles/base.css</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file alias="MaterialIcons-Regular.ttf">fonts/MaterialIcons-Regular.ttf</file>
     </qresource>
 </RCC>

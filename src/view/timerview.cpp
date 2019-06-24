@@ -13,16 +13,14 @@ TimerView::TimerView(QWidget *parent)
       footerLeftWidget(new QWidget(footerWidget)),
       footerLeftLayout(new QVBoxLayout(footerLeftWidget)),
       footerLeftRoundLabel(new QLabel(footerLeftWidget)),
-      footerLeftResetButton(new QPushButton(footerLeftWidget)),
-
-      mStartIcon(":icons/start.svg"),
-      mPauseIcon(":icons/pause.svg")
+      footerLeftResetButton(new QPushButton(footerLeftWidget))
 {
     QFont baseFont("Lato");
     baseFont.setPixelSize(16);
     baseFont.setStyleHint(QFont::SansSerif);
 
     timerButton->setProperty("circle", true);
+    timerButton->setProperty("material-icon", true);
 
     footerLeftRoundLabel->setFont(baseFont);
 
@@ -42,13 +40,15 @@ TimerView::TimerView(QWidget *parent)
     centralLayout->addWidget(footerWidget, 0, Qt::AlignVCenter);
 }
 
+const QString& TimerView::materialPlayIcon = QString::fromWCharArray(L"\ue037");
+const QString& TimerView::materialPauseIcon = QString::fromWCharArray(L"\ue034");
 
 void TimerView::setState(Pomodoro::State state)
 {
     if (state == Pomodoro::Idle || state == Pomodoro::Paused) {
-        timerButton->setIcon(mStartIcon);
+        timerButton->setText(materialPlayIcon);
     } else {
-        timerButton->setIcon(mPauseIcon);
+        timerButton->setText(materialPauseIcon);
     }
 }
 

@@ -11,3 +11,8 @@ QPushButton[circle="true"] {
 QPushButton[circle="true"]:hover {
     background-color: #3d4457;
 }
+
+QPushButton[material-icon="true"] {
+    font-family: "Material Icons";
+    font-size: 24px;
+}

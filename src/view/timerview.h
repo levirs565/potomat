@@ -32,8 +32,8 @@ public:
     void setResetButtonClickSlot(QObject *receiver, const char* amember);
 
 private:
-    QIcon mStartIcon;
-    QIcon mPauseIcon;
+    static const QString& materialPlayIcon;
+    static const QString& materialPauseIcon;
 
 signals:
 
