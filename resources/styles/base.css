@@ -17,6 +17,30 @@ QPushButton[material-icon="true"] {
     font-size: 24px;
 }
 
+*[font-roboto-mono="true"] {
+    font-family: "Roboto Mono", sans-serif;
+}
+
+*[font-lato="true"] {
+    font-family: "Lato", sans-serif;
+}
+
+*[text-small="true"] {
+    font-size: 14px;
+}
+
+*[text-medium="true"] {
+    font-size: 16px;
+}
+
+*[text-very-big="true"] {
+    font-size: 46px;
+}
+
+*[text-uppercase="true"] {
+    text-transform: uppercase;
+}
+
 QTabBar::tab {
     font-family: "Material Icons";
     font-size: 24px;

@@ -10,22 +10,15 @@ TimerWidget::TimerWidget(QWidget *parent) :
     mTimeLabel(new QLabel(mLabelsWidget)),
     mDialLabel(new QLabel(mLabelsWidget))
 {
-    QFont timeLabelFont("Roboto Mono");
-    timeLabelFont.setPixelSize(46);
-    timeLabelFont.setStyleHint(QFont::Monospace);
-    timeLabelFont.setWeight(QFont::Light);
-
-    mTimeLabel->setFont(timeLabelFont);
+    mTimeLabel->setProperty("font-roboto-mono", true);
+    mTimeLabel->setProperty("text-very-big", true);
     mTimeLabel->setAlignment(Qt::AlignCenter);
 
     mLabelsLayout->addWidget(mTimeLabel, 0, Qt::AlignCenter);
 
-    QFont dialLabelFont("Lato");
-    dialLabelFont.setPixelSize(16);
-    dialLabelFont.setCapitalization(QFont::AllUppercase);
-    dialLabelFont.setStyleHint(QFont::SansSerif);
-
-    mDialLabel->setFont(dialLabelFont);
+    mDialLabel->setProperty("font-lato", true);
+    mDialLabel->setProperty("text-medium", true);
+    mDialLabel->setProperty("text-uppercase", true);
     mDialLabel->setText("Work");
 
     mLabelsLayout->addWidget(mDialLabel, 0, Qt::AlignCenter);

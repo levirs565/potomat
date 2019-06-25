@@ -15,17 +15,14 @@ TimerView::TimerView(QWidget *parent)
       footerLeftRoundLabel(new QLabel(footerLeftWidget)),
       footerLeftResetButton(new QPushButton(footerLeftWidget))
 {
-    QFont baseFont("Lato");
-    baseFont.setPixelSize(16);
-    baseFont.setStyleHint(QFont::SansSerif);
-
     timerButton->setProperty("circle", true);
     timerButton->setProperty("material-icon", true);
 
-    footerLeftRoundLabel->setFont(baseFont);
+    footerLeftRoundLabel->setProperty("text-medium", true);
+    footerLeftRoundLabel->setProperty("font-lato", true);
 
     footerLeftResetButton->setText("Reset");
-    footerLeftResetButton->setFont(baseFont);
+    footerLeftResetButton->setProperty("text-small", true);
 
     footerLeftLayout->setContentsMargins(0, 0, 0, 0);
     footerLeftLayout->addWidget(footerLeftRoundLabel, 0, Qt::AlignCenter);
