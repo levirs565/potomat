@@ -7,6 +7,6 @@ DrawerView::DrawerView(QWidget *parent)
       swTabBar(new SWTabBar(this))
 {
     setTabBar(swTabBar);
-    addTab(configView, "Timer");
-    addTab(aboutView, "About");
+    addTab(configView, QString::fromWCharArray(L"\ue192"));
+    addTab(aboutView, QString::fromWCharArray(L"\ue88e"));
 }
