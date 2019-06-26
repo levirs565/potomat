@@ -16,7 +16,7 @@ TimerView::TimerView(QWidget *parent)
       footerLeftResetButton(new QPushButton(footerLeftWidget))
 {
     timerButton->setProperty("circle", true);
-    timerButton->setProperty("material-icon", true);
+    timerButton->setProperty("font-material-icon", true);
 
     footerLeftRoundLabel->setProperty("text-medium", true);
     footerLeftRoundLabel->setProperty("font-lato", true);
