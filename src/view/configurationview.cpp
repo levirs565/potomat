@@ -1,5 +1,6 @@
 #include "configurationview.h"
 #include <QDebug>
+#include <QMetaMethod>
 
 ConfigurationView::ConfigurationView(QWidget *parent)
     : QWidget(parent),
@@ -15,8 +16,8 @@ ConfigurationView::ConfigurationView(QWidget *parent)
 
     resetButton->setText("Reset Defaults");
 
-    const char *signal = SIGNAL(valueChanged(int,int));
-    const char *slot = SLOT(valueChanged(int,int));
+    void (SliderWidget::*signal)(int, int) = &SliderWidget::valueChanged;
+    void (ConfigurationView::*slot)(int, int) = &ConfigurationView::valueChanged;
 
     connect(workSlider, signal, this, slot);
     connect(shortBreakSlider, signal, this, slot);

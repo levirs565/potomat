@@ -72,12 +72,12 @@ void TimerView::setTime(int remainingTime, int totalTimer)
     timerWidget->setTime(remainingTime, totalTimer);
 }
 
-void TimerView::setTimerButtonClickSlot(QObject *receiver, const char *amember)
+void TimerView::setTimerButtonClickSlot(QObject *receiver, const char *slot)
 {
-    setConnection(timerButton, SIGNAL(clicked()), receiver, amember);
+    setConnection(timerButton, SIGNAL(clicked()), receiver, slot);
 }
 
-void TimerView::setResetButtonClickSlot(QObject *receiver, const char *amember)
+void TimerView::setResetButtonClickSlot(QObject *receiver, const char *slot)
 {
-    setConnection(footerLeftResetButton, SIGNAL(clicked()), receiver, amember);
+    setConnection(footerLeftResetButton, SIGNAL(clicked()), receiver, slot);
 }

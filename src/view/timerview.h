@@ -28,8 +28,9 @@ public:
     void setRound(Pomodoro::Round round, int runnedRound,
                   int worksRound);
     void setTime(int remainingTime, int totalTimer);
-    void setTimerButtonClickSlot(QObject *receiver, const char* amember);
-    void setResetButtonClickSlot(QObject *receiver, const char* amember);
+
+    void setTimerButtonClickSlot(QObject *receiver, const char* slot);
+    void setResetButtonClickSlot(QObject *receiver, const char* slot);
 
 private:
     static const QString& materialPlayIcon;

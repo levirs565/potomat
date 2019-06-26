@@ -12,7 +12,7 @@ SliderWidget::SliderWidget(QWidget *parent, QString title, int configIndex, int 
 {
     titleLabel->setText(title);
 
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(sliderValueChanged(int)));
+    connect(slider, &QSlider::valueChanged, this, &SliderWidget::sliderValueChanged);
     slider->setMinimum(min);
     slider->setMaximum(max);
     slider->setValue(value);

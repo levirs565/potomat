@@ -11,7 +11,7 @@ Pomodoro::Pomodoro(QObject *parent)
       mTimeShortBreak(defaultTimeShortBreak),
       mTimeLongBreak(defaultTimeLongBreak)
 {
-    connect(mTimer, SIGNAL(timeout()), this, SLOT(intervalUpdate()));
+    connect(mTimer, &QTimer::timeout, this, &Pomodoro::intervalUpdate);
 }
 
 void Pomodoro::startIntegration()

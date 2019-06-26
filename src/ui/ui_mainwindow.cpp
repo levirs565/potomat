@@ -15,7 +15,7 @@ UI_MainWindow::UI_MainWindow(QMainWindow *parent)
       drawerIsOpened(false)
 {
     toggleButton->setText("More");
-    connect(toggleButton, SIGNAL(clicked()), this, SLOT(toggleDrawer()));
+    connect(toggleButton, &QPushButton::clicked, this, &UI_MainWindow::toggleDrawer);
 
     mainWidget->addWidget(timerView);
     mainWidget->addWidget(drawerView);

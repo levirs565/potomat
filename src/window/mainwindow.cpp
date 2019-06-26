@@ -25,10 +25,10 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
                 mPomodoro->getConfig(0)
     );
     qDebug() << mPomodoro->getConfig(0);
-    connect(mUI->drawerView->configView, SIGNAL(configChanged(int,int)),
-            mPomodoro, SLOT(setConfig(int,int)));
-    connect(mUI->drawerView->configView->resetButton, SIGNAL(clicked()),
-            this, SLOT(resetConfig()));
+    connect(mUI->drawerView->configView, &ConfigurationView::configChanged,
+            mPomodoro, &Pomodoro::setConfig);
+    connect(mUI->drawerView->configView->resetButton, &QPushButton::clicked,
+            this, &MainWindow::resetConfig);
 
     pomodoroUpdateState(Pomodoro::Idle);
 
@@ -66,7 +66,6 @@ void MainWindow::pomodoroUpdateState(Pomodoro::State state)
 
         resetSlot = SLOT(resetTimer());
     }
-
 
     mUI->timerView->setTimerButtonClickSlot(mPomodoro, buttonSlot);
     mUI->timerView->setResetButtonClickSlot(mPomodoro, resetSlot);
