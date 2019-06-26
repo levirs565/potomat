@@ -4,7 +4,7 @@
 
 TimerWidget::TimerWidget(QWidget *parent) :
     QWidget(parent),
-    mDial(new TimerDialWidget(this)),
+    mProgress(new TimerProgressWidget(this)),
     mLabelsWidget(new QWidget(this)),
     mLabelsLayout(new QVBoxLayout(mLabelsWidget)),
     mTimeLabel(new QLabel(mLabelsWidget)),
@@ -34,18 +34,18 @@ TimerWidget::~TimerWidget()
     delete mTimeLabel;
     delete mLabelsLayout;
     delete mLabelsWidget;
-    delete mDial;
+    delete mProgress;
 }
 
 void TimerWidget::setTime(int remaining, int total)
 {
     mTimeLabel->setText(formatTime(remaining));
-    mDial->setPercent((float)remaining/(float)total);
+    mProgress->setPercent((float)remaining/(float)total);
 }
 
 void TimerWidget::setDialFillColor(QColor fill)
 {
-    mDial->setFillColor(fill);
+    mProgress->setFillColor(fill);
 }
 
 void TimerWidget::setLabel(QString str)
@@ -58,7 +58,7 @@ void TimerWidget::resizeEvent(QResizeEvent *event)
     const int width = event->size().width();
     const int height = event->size().height();
 
-    mDial->setGeometry(0, 0, width, height);
+    mProgress->setGeometry(0, 0, width, height);
 
     const int ch = mLabelsWidget->sizeHint().height();
     const int top = (height/2) - (ch/2);

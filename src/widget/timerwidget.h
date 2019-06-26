@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
-#include "timerdialwidget.h"
+#include "timerprogresswidget.h"
 
 class TimerWidget : public QWidget
 {
@@ -21,7 +21,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    TimerDialWidget *mDial;
+    TimerProgressWidget *mProgress;
     QLayout *mLayout;
     QWidget *mLabelsWidget;
     QVBoxLayout *mLabelsLayout;

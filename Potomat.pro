@@ -28,7 +28,6 @@ SOURCES += \
         src/main.cpp \
         src/window/mainwindow.cpp \
     src/widget/timerwidget.cpp \
-    src/widget/timerdialwidget.cpp \
     src/util/pomodoro.cpp \
     src/ui/ui_mainwindow.cpp \
     src/util/helper.cpp \
@@ -38,12 +37,12 @@ SOURCES += \
     src/widget/sliderwidget.cpp \
     src/view/aboutview.cpp \
     src/widget/swtabbar.cpp \
-    src/util/configuration.cpp
+    src/util/configuration.cpp \
+    src/widget/timerprogresswidget.cpp
 
 HEADERS += \
         src/window/mainwindow.h \
     src/widget/timerwidget.h \
-    src/widget/timerdialwidget.h \
     src/util/pomodoro.h \
     src/ui/ui_mainwindow.h \
     src/util/helper.h \
@@ -53,7 +52,8 @@ HEADERS += \
     src/widget/sliderwidget.h \
     src/view/aboutview.h \
     src/widget/swtabbar.h \
-    src/util/configuration.h
+    src/util/configuration.h \
+    src/widget/timerprogresswidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

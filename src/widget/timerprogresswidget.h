@@ -4,11 +4,11 @@
 #include <QWidget>
 #include <QPen>
 
-class TimerDialWidget : public QWidget
+class TimerProgressWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TimerDialWidget(QWidget *parent = nullptr);
+    explicit TimerProgressWidget(QWidget *parent = nullptr);
 
     void setPercent(float percent);
     float getPercent();
