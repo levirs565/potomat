@@ -7,7 +7,7 @@
 #include "../widget/timerwidget.h"
 #include "../util/pomodoro.h"
 #include "../util/configuration.h"
-#include "../ui/ui_mainwindow.h"
+#include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow
 {
@@ -19,7 +19,7 @@ public:
 
 private:
     Pomodoro *mPomodoro;
-    UI_MainWindow *mUI;
+    Ui::MainWindow *mUI;
     Configuration& mConfig;
 
 private slots:
