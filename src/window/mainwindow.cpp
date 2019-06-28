@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
 
 MainWindow::~MainWindow()
 {
-    //    mPomodoro->saveConfig(mConfig);
+    mPomodoro->saveConfig(mConfig);
 }
 
 void MainWindow::openDrawer()
