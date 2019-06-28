@@ -24,7 +24,27 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
 
 MainWindow::~MainWindow()
 {
-//    mPomodoro->saveConfig(mConfig);
+    //    mPomodoro->saveConfig(mConfig);
+}
+
+void MainWindow::openDrawer()
+{
+    mUI->sliderWorkRounds->setValue(mPomodoro->getConfig(0));
+    mUI->sliderWork->setValue(mPomodoro->getConfig(1));
+    mUI->sliderShortBreak->setValue(mPomodoro->getConfig(2));
+    mUI->sliderLongBreak->setValue(mPomodoro->getConfig(3));
+
+    mUI->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::closeDrawer()
+{
+    mPomodoro->setConfig(0, mUI->sliderWorkRounds->value());
+    mPomodoro->setConfig(1, mUI->sliderWork->value());
+    mPomodoro->setConfig(2, mUI->sliderShortBreak->value());
+    mPomodoro->setConfig(3, mUI->sliderLongBreak->value());
+
+    mUI->stackedWidget->setCurrentIndex(0);
 }
 
 const QString MainWindow::timerArg = "%1:%2";
@@ -89,4 +109,12 @@ void MainWindow::on_resetButton_clicked()
 {
     if (mPomodoro->getCurrentState() != Pomodoro::Idle)
         mPomodoro->resetTimer();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (mUI->stackedWidget->currentIndex() == 0)
+        openDrawer();
+    else
+        closeDrawer();
 }
