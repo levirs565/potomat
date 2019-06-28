@@ -138,6 +138,11 @@ void Pomodoro::saveConfig(Configuration &config)
    }
 }
 
+Pomodoro::State Pomodoro::getCurrentState() const
+{
+    return mCurrentState;
+}
+
 void Pomodoro::switchRound(Pomodoro::Round round)
 {
     mCurrentRound = round;

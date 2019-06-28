@@ -22,12 +22,17 @@ private:
     Ui::MainWindow *mUI;
     Configuration& mConfig;
 
+    static const QString timerArg;
+    static const QString roundArg;
+    static const QChar zeroChar;
+
 private slots:
-    void pomodoroUpdateTimer(int remaining, int total);
-    void pomodoroUpdateRound(Pomodoro::Round round, int runnedRound,
+    void pomodoro_updateTimer(int remaining, int total);
+    void pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
                              int worksRound);
-    void pomodoroUpdateState(Pomodoro::State state);
-    void resetConfig();
+    void pomodoro_updateState(Pomodoro::State state);
+    void on_buttonPomodoro_clicked();
+    void on_resetButton_clicked();
 };
 
 #endif // MAINWINDOW_H

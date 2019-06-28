@@ -36,6 +36,8 @@ public:
     void loadConfig(Configuration& config);
     void saveConfig(Configuration& config);
 
+    State getCurrentState() const;
+
 private:
     QTimer *mTimer;
     Round mCurrentRound;

@@ -9,32 +9,17 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
       mUI(new Ui::MainWindow()),
       mConfig(config)
 {
-//    mPomodoro->loadConfig(mConfig);
-//    connect(mPomodoro, &Pomodoro::updateTimer,
-//            this, &MainWindow::pomodoroUpdateTimer);
-//    connect(mPomodoro, &Pomodoro::updateRound,
-//            this, &MainWindow::pomodoroUpdateRound);
-//    connect(mPomodoro, &Pomodoro::updateState,
-//            this, &MainWindow::pomodoroUpdateState);
-//    mPomodoro->startIntegration();
-
-//    mUI->drawerView->configView->setConfiguration(
-//                mPomodoro->getConfig(1),
-//                mPomodoro->getConfig(2),
-//                mPomodoro->getConfig(3),
-//                mPomodoro->getConfig(0)
-//    );
-//    qDebug() << mPomodoro->getConfig(0);
-//    connect(mUI->drawerView->configView, &ConfigurationView::configChanged,
-//            mPomodoro, &Pomodoro::setConfig);
-//    connect(mUI->drawerView->configView->resetButton, &QPushButton::clicked,
-//            this, &MainWindow::resetConfig);
-
-//    pomodoroUpdateState(Pomodoro::Idle);
-
-//    setCentralWidget(mUI->centralWidget);
+    mPomodoro->loadConfig(mConfig);
+    connect(mPomodoro, &Pomodoro::updateTimer,
+            this, &MainWindow::pomodoro_updateTimer);
+    connect(mPomodoro, &Pomodoro::updateRound,
+            this, &MainWindow::pomodoro_updateRound);
+    connect(mPomodoro, &Pomodoro::updateState,
+            this, &MainWindow::pomodoro_updateState);
 
     mUI->setupUi(this);
+
+    mPomodoro->startIntegration();
 }
 
 MainWindow::~MainWindow()
@@ -42,45 +27,66 @@ MainWindow::~MainWindow()
 //    mPomodoro->saveConfig(mConfig);
 }
 
-void MainWindow::pomodoroUpdateTimer(int remaining, int total)
+const QString MainWindow::timerArg = "%1:%2";
+const QChar MainWindow::zeroChar = '0';
+
+void MainWindow::pomodoro_updateTimer(int remaining, int total)
 {
-//    mUI->timerView->setTime(remaining, total);
+    const int minute = remaining / 60;
+    const int second = remaining % 60;
+
+    mUI->labelTimer->setText(timerArg
+                                .arg(minute, 2, 10, zeroChar)
+                                .arg(second, 2, 10, zeroChar));
+
+    mUI->timerPomodoro->setPercent((float)remaining/(float)total);
 }
 
-void MainWindow::pomodoroUpdateRound(Pomodoro::Round round, int runnedRound,
+const QString MainWindow::roundArg = "%1/%2";
+
+void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
                                      int worksRound)
 {
-//    mUI->timerView->setRound(round, runnedRound, worksRound);
+    QString roundName;
+    if (round == Pomodoro::Work)
+        roundName = "Work";
+    else if (round == Pomodoro::ShortBreak)
+        roundName  = "Short Break";
+    else
+        roundName = "Long Break";
+
+    mUI->labelRoundName->setText(roundName);
+    mUI->labelRound->setText(roundArg
+                                .arg(runnedRound)
+                                .arg(worksRound));
 }
 
-void MainWindow::pomodoroUpdateState(Pomodoro::State state)
+void MainWindow::pomodoro_updateState(Pomodoro::State state)
 {
-//    const char *buttonSlot = nullptr;
-//    const char *resetSlot = nullptr;
+    QString text;
 
-//    if (state == Pomodoro::Idle)
-//        buttonSlot = SLOT(start());
-//    else {
-//        if (state == Pomodoro::Paused)
-//            buttonSlot = SLOT(resume());
-//        else
-//            buttonSlot = SLOT(pause());
+    if (state == Pomodoro::Idle || state == Pomodoro::Paused)
+        text = QString::fromWCharArray(L"\ue037");
+    else
+        text = QString::fromWCharArray(L"\ue034");
 
-//        resetSlot = SLOT(resetTimer());
-//    }
-
-//    mUI->timerView->setTimerButtonClickSlot(mPomodoro, buttonSlot);
-//    mUI->timerView->setResetButtonClickSlot(mPomodoro, resetSlot);
-//    mUI->timerView->setState(state);
+    mUI->buttonPomodoro->setText(text);
 }
 
-void MainWindow::resetConfig()
+void MainWindow::on_buttonPomodoro_clicked()
 {
-//    mUI->drawerView->configView->setConfiguration(
-//                Pomodoro::defaultTimeWork,
-//                Pomodoro::defaultTimeShortBreak,
-//                Pomodoro::defaultTimeLongBreak,
-//                Pomodoro::defaultWorkRounds
-//                );
+    Pomodoro::State state = mPomodoro->getCurrentState();
+
+    if (state == Pomodoro::Idle)
+        mPomodoro->start();
+    else if (state == Pomodoro::Paused)
+        mPomodoro->resume();
+    else if (state == Pomodoro::Started)
+        mPomodoro->pause();
 }
 
+void MainWindow::on_resetButton_clicked()
+{
+    if (mPomodoro->getCurrentState() != Pomodoro::Idle)
+        mPomodoro->resetTimer();
+}
