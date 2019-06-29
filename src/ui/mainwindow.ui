@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>327</width>
-    <height>380</height>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="timer">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -47,30 +47,27 @@
            </item>
            <item alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="labelTimer">
+             <property name="font">
+              <font>
+               <family>Roboto Mono</family>
+               <pointsize>36</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>25:00</string>
-             </property>
-             <property name="font-roboto-mono" stdset="0">
-              <bool>true</bool>
-             </property>
-             <property name="text-very-big" stdset="0">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="labelRoundName">
+             <property name="font">
+              <font>
+               <family>Lato</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Work</string>
-             </property>
-             <property name="font-lato" stdset="0">
-              <bool>true</bool>
-             </property>
-             <property name="text-medium" stdset="0">
-              <bool>true</bool>
-             </property>
-             <property name="text-uppercase" stdset="0">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -92,14 +89,29 @@
         </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QPushButton" name="buttonPomodoro">
+          <property name="font">
+           <font>
+            <family>Material Icons</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border-width: 2px;
+    border-color: #858c99;
+    border-style: solid;
+    border-radius: 27px;
+    width: 50px;
+    height: 50px;
+    color: #858c99;
+}
+
+QPushButton:hover {
+    background-color: #3d4457;
+}</string>
+          </property>
           <property name="text">
            <string></string>
-          </property>
-          <property name="circle" stdset="0">
-           <bool>true</bool>
-          </property>
-          <property name="font-material-icon" stdset="0">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -120,17 +132,17 @@
            </property>
            <item>
             <widget class="QLabel" name="labelRound">
+             <property name="font">
+              <font>
+               <family>Lato</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>0/4</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
-             </property>
-             <property name="font-lato" stdset="0">
-              <bool>true</bool>
-             </property>
-             <property name="text-small" stdset="0">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -150,8 +162,19 @@
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
          <widget class="QTabWidget" name="tabDrawer">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTabBar::tab {
+    font-family: &quot;Material Icons&quot;;
+    font-size: 18pt;
+    height: 36px;
+	min-width: 100px;
+}</string>
+          </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabTimer">
            <attribute name="title">
