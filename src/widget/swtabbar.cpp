@@ -12,6 +12,11 @@ QSize SWTabBar::tabSizeHint(int index) const
 {
 
     QSize sz = QTabBar::tabSizeHint(index);
-    int w = (mTabWidget->width() / count()) - 1;
+    int c = count();
+    int w = (mTabWidget->width() / c);
+
+    if (index < c - 1)
+        w -= 1;
+
     return QSize(w, sz.height());
 }

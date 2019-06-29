@@ -43,7 +43,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="timer">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -221,7 +221,7 @@ QPushButton:hover {
          <number>0</number>
         </property>
         <item>
-         <widget class="QTabWidget" name="tabDrawer">
+         <widget class="SWTabWidget" name="tabDrawer">
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
@@ -424,6 +424,12 @@ QPushButton:hover {
    <slots>
     <slot>setMinute(int)</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>SWTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>../widget/swtabwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

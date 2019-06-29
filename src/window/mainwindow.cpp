@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QImageReader>
 #include "mainwindow.h"
+#include "../widget/swtabbar.h"
 
 MainWindow::MainWindow(QWidget *parent, Configuration& config)
     : QMainWindow(parent),

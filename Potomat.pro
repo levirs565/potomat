@@ -39,7 +39,8 @@ SOURCES += \
     src/widget/swtabbar.cpp \
     src/util/configuration.cpp \
     src/widget/timerprogresswidget.cpp \
-    src/widget/timelabelwidget.cpp
+    src/widget/timelabelwidget.cpp \
+    src/widget/swtabwidget.cpp
 
 HEADERS += \
         src/window/mainwindow.h \
@@ -55,7 +56,8 @@ HEADERS += \
     src/widget/swtabbar.h \
     src/util/configuration.h \
     src/widget/timerprogresswidget.h \
-    src/widget/timelabelwidget.h
+    src/widget/timelabelwidget.h \
+    src/widget/swtabwidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
