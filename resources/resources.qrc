@@ -1,7 +1,5 @@
 <RCC>
-    <qresource prefix="/styles">
-        <file alias="base.css">styles/base.css</file>
-    </qresource>
+    <qresource prefix="/styles"/>
     <qresource prefix="/fonts">
         <file alias="MaterialIcons-Regular.ttf">fonts/MaterialIcons-Regular.ttf</file>
     </qresource>

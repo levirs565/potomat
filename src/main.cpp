@@ -13,10 +13,6 @@ int main(int argc, char *argv[])
     if (QFontDatabase::addApplicationFont(":fonts/MaterialIcons-Regular.ttf") == -1)
         qWarning() << "Cannot load material icons font";
 
-    QFile style(":styles/base.css");
-    if (style.open(QIODevice::ReadOnly | QIODevice::Text))
-        a.setStyleSheet(style.readAll());
-
     MainWindow w(nullptr, conf);
     w.show();
 
