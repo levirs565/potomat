@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>327</width>
-    <height>385</height>
+    <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,26 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item alignment="Qt::AlignLeft">
      <widget class="QPushButton" name="pushButton">
+      <property name="maximumSize">
+       <size>
+        <width>50</width>
+        <height>16777213</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Material Icons</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string/>
+       <string></string>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
