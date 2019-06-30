@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>327</width>
-    <height>397</height>
+    <width>260</width>
+    <height>415</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,29 +15,80 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item alignment="Qt::AlignLeft">
-     <widget class="QPushButton" name="pushButton">
-      <property name="maximumSize">
-       <size>
-        <width>50</width>
-        <height>16777213</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Material Icons</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string></string>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
+    <item>
+     <widget class="QWidget" name="topbar" native="true">
+      <layout class="QHBoxLayout" name="layoutTopbar">
+       <item>
+        <widget class="QPushButton" name="buttonDrawer">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777213</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Material Icons</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string></string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="u_spacerTopbar">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonMinmize">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Material Icons</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string></string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonTopPomodoro">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Material Icons</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string></string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
@@ -46,7 +97,7 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="timer">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="layoutTimer">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -79,7 +130,10 @@
             <height>220</height>
            </size>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <layout class="QVBoxLayout" name="layoutPomodoro">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <spacer name="u_spacerPomodoro_1">
              <property name="orientation">
@@ -105,6 +159,22 @@
               <string>25:00</string>
              </property>
             </widget>
+           </item>
+           <item>
+            <spacer name="u_spacerPomodoro_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>6</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="labelRoundName">
@@ -234,7 +304,7 @@ QPushButton:hover {
 }</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tabTimer">
            <attribute name="title">
@@ -469,7 +539,7 @@ QPushButton:hover {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>327</width>
+     <width>260</width>
      <height>20</height>
     </rect>
    </property>

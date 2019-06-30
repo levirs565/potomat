@@ -21,9 +21,12 @@ private:
     Pomodoro *mPomodoro;
     Ui::MainWindow *mUI;
     Configuration& mConfig;
+    bool mIsMinimize;
 
     void openDrawer();
     void closeDrawer();
+    void minimizeSize();
+    void maximizeSize();
 
     static const QString timerArg;
     static const QString roundArg;
@@ -36,7 +39,9 @@ private slots:
     void pomodoro_updateState(Pomodoro::State state);
     void on_buttonPomodoro_clicked();
     void on_resetButton_clicked();
-    void on_pushButton_clicked();
+    void on_buttonDrawer_clicked();
+    void on_buttonMinmize_clicked();
+    void on_buttonTopPomodoro_clicked();
 };
 
 #endif // MAINWINDOW_H

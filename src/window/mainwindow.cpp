@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
             this, &MainWindow::pomodoro_updateState);
 
     mUI->setupUi(this);
+    maximizeSize();
 
     mPomodoro->startIntegration();
 }
@@ -36,6 +37,8 @@ void MainWindow::openDrawer()
     mUI->sliderLongBreak->setValue(mPomodoro->getConfig(3));
 
     mUI->stackedWidget->setCurrentIndex(1);
+
+    mUI->buttonMinmize->setVisible(false);
 }
 
 void MainWindow::closeDrawer()
@@ -46,6 +49,74 @@ void MainWindow::closeDrawer()
     mPomodoro->setConfig(3, mUI->sliderLongBreak->value());
 
     mUI->stackedWidget->setCurrentIndex(0);
+
+    mUI->buttonMinmize->setVisible(true);
+}
+
+void MainWindow::minimizeSize()
+{
+    mUI->layoutTimer->setDirection(QBoxLayout::LeftToRight);
+
+    mUI->timerPomodoro->setMinimumSize(0, 0);
+    mUI->timerPomodoro->setMaximumSize(100000, 100000);
+    mUI->timerPomodoro->setType(TimerProgressWidget::Horizontal);
+    mUI->layoutTimer->setAlignment(mUI->timerPomodoro, Qt::Alignment());
+
+    mUI->layoutPomodoro->setDirection(QBoxLayout::LeftToRight);
+    mUI->u_spacerPomodoro_1->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
+    mUI->u_spacerPomodoro_2->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
+    mUI->u_spacerPomodoro_3->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+    mUI->verticalLayout->setDirection(QBoxLayout::LeftToRight);
+
+    mUI->footerLeft->setVisible(false);
+    mUI->buttonPomodoro->setVisible(false);
+
+    QFont qf = QFont(mUI->labelTimer->font());
+    qf.setPointSize(14);
+    mUI->labelTimer->setFont(qf);
+
+    mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
+    mUI->buttonDrawer->setVisible(false);
+    mUI->buttonTopPomodoro->setVisible(true);
+    mUI->buttonMinmize->setText(QString::fromWCharArray(L"\ue316"));
+
+    setFixedSize(450, 75);
+
+    mIsMinimize = true;
+}
+
+void MainWindow::maximizeSize()
+{
+    mUI->layoutTimer->setDirection(QBoxLayout::TopToBottom);
+
+    mUI->timerPomodoro->setMinimumSize(220, 220);
+    mUI->timerPomodoro->setMaximumSize(220, 220);
+    mUI->timerPomodoro->setType(TimerProgressWidget::Dial);
+    mUI->layoutTimer->setAlignment(mUI->timerPomodoro, Qt::AlignHCenter|Qt::AlignTop);
+
+    mUI->layoutPomodoro->setDirection(QBoxLayout::TopToBottom);
+    mUI->u_spacerPomodoro_1->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    mUI->u_spacerPomodoro_2->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    mUI->u_spacerPomodoro_3->changeSize(0, 6, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+    mUI->verticalLayout->setDirection(QBoxLayout::TopToBottom);
+
+    mUI->footerLeft->setVisible(true);
+    mUI->buttonPomodoro->setVisible(true);
+
+    QFont qf = QFont(mUI->labelTimer->font());
+    qf.setPointSize(36);
+    mUI->labelTimer->setFont(qf);
+
+    mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    mUI->buttonDrawer->setVisible(true);
+    mUI->buttonTopPomodoro->setVisible(false);
+    mUI->buttonMinmize->setText(QString::fromWCharArray(L"\ue313"));
+
+    setFixedSize(260, 425);
+
+    mIsMinimize = false;
 }
 
 const QString MainWindow::timerArg = "%1:%2";
@@ -92,6 +163,7 @@ void MainWindow::pomodoro_updateState(Pomodoro::State state)
         text = QString::fromWCharArray(L"\ue034");
 
     mUI->buttonPomodoro->setText(text);
+    mUI->buttonTopPomodoro->setText(text);
 }
 
 void MainWindow::on_buttonPomodoro_clicked()
@@ -112,10 +184,23 @@ void MainWindow::on_resetButton_clicked()
         mPomodoro->resetTimer();
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_buttonDrawer_clicked()
 {
     if (mUI->stackedWidget->currentIndex() == 0)
         openDrawer();
     else
         closeDrawer();
+}
+
+void MainWindow::on_buttonMinmize_clicked()
+{
+    if (!mIsMinimize)
+        minimizeSize();
+    else
+        maximizeSize();
+}
+
+void MainWindow::on_buttonTopPomodoro_clicked()
+{
+    on_buttonPomodoro_clicked();
 }

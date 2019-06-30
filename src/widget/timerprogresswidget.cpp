@@ -2,7 +2,9 @@
 #include <QPainter>
 #include <QResizeEvent>
 
-TimerProgressWidget::TimerProgressWidget(QWidget *parent) : QWidget(parent)
+TimerProgressWidget::TimerProgressWidget(QWidget *parent)
+    : QWidget(parent),
+      mType(Dial)
 {
     mBGPen.setColor("#858c99");
     mBGPen.setWidth(2);
@@ -27,6 +29,12 @@ void TimerProgressWidget::setFillColor(QColor color)
     mFillPen.setColor(color);
 }
 
+void TimerProgressWidget::setType(TimerProgressWidget::Type type)
+{
+    mType = type;
+    update();
+}
+
 void TimerProgressWidget::resizeEvent(QResizeEvent *event) {
     int width = event->size().width();
     int height = event->size().height();
@@ -39,6 +47,11 @@ void TimerProgressWidget::resizeEvent(QResizeEvent *event) {
     mRect.setTop(paddingT+5);
     mRect.setWidth(wh-10);
     mRect.setHeight(wh-10);
+
+    mOriginRect.setLeft(0);
+    mOriginRect.setTop(0);
+    mOriginRect.setWidth(width);
+    mOriginRect.setHeight(height);
 }
 
 void TimerProgressWidget::paintEvent(QPaintEvent *event) {
@@ -46,13 +59,23 @@ void TimerProgressWidget::paintEvent(QPaintEvent *event) {
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    painter.setPen(mBGPen);
-    painter.drawArc(mRect, startAngle, fullAngle);
+//    painter.fillRect(rect(), Qt::red);
 
-    int spanAngle = (mPercent*360)*16;
+    if (mType == Dial) {
+        painter.setPen(mBGPen);
+        painter.drawArc(mRect, startAngle, fullAngle);
 
-    painter.setPen(mFillPen);
-    painter.drawArc(mRect, startAngle, spanAngle);
+        int spanAngle = (mPercent*360)*16;
+
+        painter.setPen(mFillPen);
+        painter.drawArc(mRect, startAngle, spanAngle);
+    } else {
+        painter.fillRect(mOriginRect, mBGPen.brush());
+
+        int hp = (mPercent * mOriginRect.width());
+
+        painter.fillRect(0, 0, hp, mOriginRect.height(), mFillPen.brush());
+    }
 
     painter.end();
 }
