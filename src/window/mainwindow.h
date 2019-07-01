@@ -17,11 +17,18 @@ public:
     MainWindow(QWidget *parent = 0, Configuration& config = *new Configuration());
     ~MainWindow();
 
+protected:
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+
 private:
     Pomodoro *mPomodoro;
     Ui::MainWindow *mUI;
     Configuration& mConfig;
     bool mIsMinimize;
+    bool mCanDrag;
+    QPoint mLastPoint;
 
     void openDrawer();
     void closeDrawer();

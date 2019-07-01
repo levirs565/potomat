@@ -1,6 +1,7 @@
 #include <QVariant>
 #include <QDebug>
 #include <QImageReader>
+#include <QMouseEvent>
 #include "mainwindow.h"
 #include "../widget/swtabbar.h"
 
@@ -21,12 +22,36 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
     mUI->setupUi(this);
     maximizeSize();
 
+    setWindowFlag(Qt::FramelessWindowHint);
+
     mPomodoro->startIntegration();
 }
 
 MainWindow::~MainWindow()
 {
     mPomodoro->saveConfig(mConfig);
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        mLastPoint = event->globalPos() - frameGeometry().topLeft();
+        mCanDrag = true;
+    }
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        mCanDrag = false;
+    }
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->buttons() & Qt::LeftButton && mCanDrag) {
+        move(event->globalPos() - mLastPoint);
+    }
 }
 
 void MainWindow::openDrawer()
@@ -38,7 +63,7 @@ void MainWindow::openDrawer()
 
     mUI->stackedWidget->setCurrentIndex(1);
 
-    mUI->buttonMinmize->setVisible(false);
+    mUI->buttonMinmize->setEnabled(false);
 }
 
 void MainWindow::closeDrawer()
@@ -50,7 +75,7 @@ void MainWindow::closeDrawer()
 
     mUI->stackedWidget->setCurrentIndex(0);
 
-    mUI->buttonMinmize->setVisible(true);
+    mUI->buttonMinmize->setEnabled(true);
 }
 
 void MainWindow::minimizeSize()
@@ -76,6 +101,7 @@ void MainWindow::minimizeSize()
     qf.setPointSize(14);
     mUI->labelTimer->setFont(qf);
 
+    mUI->layoutTopbar->setDirection(QBoxLayout::RightToLeft);
     mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
     mUI->buttonDrawer->setVisible(false);
     mUI->buttonTopPomodoro->setVisible(true);
@@ -109,6 +135,7 @@ void MainWindow::maximizeSize()
     qf.setPointSize(36);
     mUI->labelTimer->setFont(qf);
 
+    mUI->layoutTopbar->setDirection(QBoxLayout::LeftToRight);
     mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
     mUI->buttonDrawer->setVisible(true);
     mUI->buttonTopPomodoro->setVisible(false);

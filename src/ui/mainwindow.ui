@@ -15,25 +15,70 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QWidget" name="topbar" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <layout class="QHBoxLayout" name="layoutTopbar">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QPushButton" name="buttonDrawer">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>30</width>
            <height>16777213</height>
           </size>
          </property>
          <property name="font">
           <font>
            <family>Material Icons</family>
-           <pointsize>10</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
           <string></string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -51,40 +96,114 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonMinmize">
+        <widget class="QPushButton" name="buttonTopPomodoro">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>30</width>
            <height>16777215</height>
           </size>
          </property>
          <property name="font">
           <font>
            <family>Material Icons</family>
-           <pointsize>10</pointsize>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string></string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonHide">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Material Icons</family>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string></string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonMinmize">
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Material Icons</family>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
           <string></string>
          </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonTopPomodoro">
+        <widget class="QPushButton" name="buttonClose">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>35</width>
            <height>16777215</height>
           </size>
          </property>
          <property name="font">
           <font>
            <family>Material Icons</family>
-           <pointsize>10</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
-          <string></string>
+          <string></string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -98,17 +217,20 @@
       </property>
       <widget class="QWidget" name="timer">
        <layout class="QVBoxLayout" name="layoutTimer">
+        <property name="spacing">
+         <number>9</number>
+        </property>
         <property name="leftMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="topMargin">
          <number>0</number>
         </property>
         <property name="rightMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="bottomMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <item alignment="Qt::AlignHCenter|Qt::AlignTop">
          <widget class="TimerProgressWidget" name="timerPomodoro" native="true">
@@ -279,16 +401,16 @@ QPushButton:hover {
       <widget class="QWidget" name="drawer">
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <property name="leftMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="topMargin">
          <number>0</number>
         </property>
         <property name="rightMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="bottomMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <item>
          <widget class="SWTabWidget" name="tabDrawer">
@@ -630,6 +752,38 @@ QPushButton:hover {
     <hint type="destinationlabel">
      <x>162</x>
      <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonClose</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>239</x>
+     <y>30</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>129</x>
+     <y>207</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonHide</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>30</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>129</x>
+     <y>207</y>
     </hint>
    </hints>
   </connection>
