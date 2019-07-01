@@ -35,9 +35,13 @@ private:
     void minimizeSize();
     void maximizeSize();
 
-    static const QString timerArg;
-    static const QString roundArg;
-    static const QChar zeroChar;
+    static const QString& materialIconExpand;
+    static const QString& materialIconCollapse;
+    static const QString& materialIconPlay;
+    static const QString& materialIconPause;
+    static const QString& timerArg;
+    static const QString& roundArg;
+    static const QChar& zeroChar;
 
 private slots:
     void pomodoro_updateTimer(int remaining, int total);

@@ -156,7 +156,7 @@ height: 30px;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonMinmize">
+        <widget class="QPushButton" name="buttonExpand">
          <property name="minimumSize">
           <size>
            <width>32</width>

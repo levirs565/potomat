@@ -63,7 +63,7 @@ void MainWindow::openDrawer()
 
     mUI->stackedWidget->setCurrentIndex(1);
 
-    mUI->buttonMinmize->setEnabled(false);
+    mUI->buttonExpand->setEnabled(false);
 }
 
 void MainWindow::closeDrawer()
@@ -75,8 +75,10 @@ void MainWindow::closeDrawer()
 
     mUI->stackedWidget->setCurrentIndex(0);
 
-    mUI->buttonMinmize->setEnabled(true);
+    mUI->buttonExpand->setEnabled(true);
 }
+
+const QString& MainWindow::materialIconExpand = QString::fromWCharArray(L"\ue316");
 
 void MainWindow::minimizeSize()
 {
@@ -106,12 +108,14 @@ void MainWindow::minimizeSize()
     mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
     mUI->buttonDrawer->setVisible(false);
     mUI->buttonTopPomodoro->setVisible(true);
-    mUI->buttonMinmize->setText(QString::fromWCharArray(L"\ue316"));
+    mUI->buttonExpand->setText(materialIconExpand);
 
     setFixedSize(450, 45);
 
     mIsMinimize = true;
 }
+
+const QString& MainWindow::materialIconCollapse = QString::fromWCharArray(L"\ue313");
 
 void MainWindow::maximizeSize()
 {
@@ -141,15 +145,15 @@ void MainWindow::maximizeSize()
     mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
     mUI->buttonDrawer->setVisible(true);
     mUI->buttonTopPomodoro->setVisible(false);
-    mUI->buttonMinmize->setText(QString::fromWCharArray(L"\ue313"));
+    mUI->buttonExpand->setText(materialIconCollapse);
 
     setFixedSize(260, 425);
 
     mIsMinimize = false;
 }
 
-const QString MainWindow::timerArg = "%1:%2";
-const QChar MainWindow::zeroChar = '0';
+const QString& MainWindow::timerArg = "%1:%2";
+const QChar& MainWindow::zeroChar = '0';
 
 void MainWindow::pomodoro_updateTimer(int remaining, int total)
 {
@@ -163,7 +167,7 @@ void MainWindow::pomodoro_updateTimer(int remaining, int total)
     mUI->timerPomodoro->setPercent((float)remaining/(float)total);
 }
 
-const QString MainWindow::roundArg = "%1/%2";
+const QString& MainWindow::roundArg = "%1/%2";
 
 void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
                                      int worksRound)
@@ -182,14 +186,17 @@ void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
                                 .arg(worksRound));
 }
 
+const QString& MainWindow::materialIconPlay = QString::fromWCharArray(L"\ue037");
+const QString& MainWindow::materialIconPause = QString::fromWCharArray(L"\ue034");
+
 void MainWindow::pomodoro_updateState(Pomodoro::State state)
 {
     QString text;
 
     if (state == Pomodoro::Idle || state == Pomodoro::Paused)
-        text = QString::fromWCharArray(L"\ue037");
+        text = materialIconPlay;
     else
-        text = QString::fromWCharArray(L"\ue034");
+        text = materialIconPause;
 
     mUI->buttonPomodoro->setText(text);
     mUI->buttonTopPomodoro->setText(text);
