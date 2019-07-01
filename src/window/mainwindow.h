@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include "../widget/timerwidget.h"
 #include "../util/pomodoro.h"
 #include "../util/configuration.h"
 #include "ui_mainwindow.h"
