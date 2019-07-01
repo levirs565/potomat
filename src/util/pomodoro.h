@@ -25,8 +25,6 @@ public:
 
     void startIntegration();
 
-    static QString roundToString(Round round);
-
     static const int defaultTimeWork = 25;
     static const int defaultTimeShortBreak = 5;
     static const int defaultTimeLongBreak = 15;

@@ -111,16 +111,6 @@ void Pomodoro::setConfig(int index, int value)
     updateConfig(shouldUpdateRound);
 }
 
-QString Pomodoro::roundToString(Pomodoro::Round round)
-{
-    if (round == Work)
-        return "Work";
-    else if (round == ShortBreak)
-        return "Short Break";
-
-    return "Long Break";
-}
-
 void Pomodoro::loadConfig(Configuration &config)
 {
     for (int i = 0; i < allConfigs.length(); i++) {
