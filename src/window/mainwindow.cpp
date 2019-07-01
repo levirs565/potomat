@@ -86,6 +86,7 @@ void MainWindow::minimizeSize()
     mUI->timerPomodoro->setMaximumSize(100000, 100000);
     mUI->timerPomodoro->setType(TimerProgressWidget::Horizontal);
     mUI->layoutTimer->setAlignment(mUI->timerPomodoro, Qt::Alignment());
+    mUI->layoutTimer->setMargin(0);
 
     mUI->layoutPomodoro->setDirection(QBoxLayout::LeftToRight);
     mUI->u_spacerPomodoro_1->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
@@ -107,7 +108,7 @@ void MainWindow::minimizeSize()
     mUI->buttonTopPomodoro->setVisible(true);
     mUI->buttonMinmize->setText(QString::fromWCharArray(L"\ue316"));
 
-    setFixedSize(450, 75);
+    setFixedSize(450, 45);
 
     mIsMinimize = true;
 }
@@ -120,6 +121,7 @@ void MainWindow::maximizeSize()
     mUI->timerPomodoro->setMaximumSize(220, 220);
     mUI->timerPomodoro->setType(TimerProgressWidget::Dial);
     mUI->layoutTimer->setAlignment(mUI->timerPomodoro, Qt::AlignHCenter|Qt::AlignTop);
+    mUI->layoutTimer->setMargin(9);
 
     mUI->layoutPomodoro->setDirection(QBoxLayout::TopToBottom);
     mUI->u_spacerPomodoro_1->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
