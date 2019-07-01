@@ -14,7 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -36,7 +42,14 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton {
+min-width: 30px;
+min-height: 30px;
+max-width: 30px;
+max-height: 30px;
+width: 30px;
+height: 30px;
+}</string>
       </property>
       <layout class="QHBoxLayout" name="layoutTopbar">
        <property name="spacing">
@@ -58,14 +71,14 @@
         <widget class="QPushButton" name="buttonDrawer">
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>30</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>30</width>
-           <height>16777213</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="font">
@@ -76,9 +89,6 @@
          </property>
          <property name="text">
           <string></string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -99,14 +109,14 @@
         <widget class="QPushButton" name="buttonTopPomodoro">
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>30</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>30</width>
-           <height>16777215</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="font">
@@ -118,23 +128,20 @@
          <property name="text">
           <string></string>
          </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="buttonHide">
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>30</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>30</width>
-           <height>16777215</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="font">
@@ -146,23 +153,20 @@
          <property name="text">
           <string></string>
          </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="buttonMinmize">
          <property name="minimumSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>30</width>
-           <height>16777215</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="font">
@@ -174,36 +178,23 @@
          <property name="text">
           <string></string>
          </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="buttonClose">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>35</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="font">
           <font>
            <family>Material Icons</family>
            <pointsize>15</pointsize>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">min-width: 40px;
+max-width: 40px;
+width: 40px;</string>
+         </property>
          <property name="text">
           <string></string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -224,7 +215,7 @@
          <number>9</number>
         </property>
         <property name="topMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="rightMargin">
          <number>9</number>
@@ -338,16 +329,14 @@
           <property name="styleSheet">
            <string notr="true">QPushButton {
     border-width: 2px;
-    border-color: #858c99;
     border-style: solid;
     border-radius: 27px;
-    width: 50px;
-    height: 50px;
-    color: #858c99;
-}
-
-QPushButton:hover {
-    background-color: #3d4457;
+	min-width: 50px;
+min-height: 50px;
+max-width: 50px;
+max-height: 50px;
+width: 50px;
+height: 50px;
 }</string>
           </property>
           <property name="text">
@@ -388,8 +377,20 @@ QPushButton:hover {
            </item>
            <item>
             <widget class="QPushButton" name="resetButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Reset</string>
+             </property>
+             <property name="default">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -404,7 +405,7 @@ QPushButton:hover {
          <number>9</number>
         </property>
         <property name="topMargin">
-         <number>0</number>
+         <number>9</number>
         </property>
         <property name="rightMargin">
          <number>9</number>
