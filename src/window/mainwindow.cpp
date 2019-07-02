@@ -106,8 +106,10 @@ void MainWindow::minimizeSize()
 
     mUI->layoutTopbar->setDirection(QBoxLayout::RightToLeft);
     mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
+    mUI->u_spacerTopbar_2->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
     mUI->buttonDrawer->setVisible(false);
     mUI->buttonTopPomodoro->setVisible(true);
+    mUI->u_labelTitle->setVisible(false);
     mUI->buttonExpand->setText(materialIconExpand);
 
     setFixedSize(450, 45);
@@ -143,8 +145,10 @@ void MainWindow::maximizeSize()
 
     mUI->layoutTopbar->setDirection(QBoxLayout::LeftToRight);
     mUI->u_spacerTopbar->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    mUI->u_spacerTopbar_2->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
     mUI->buttonDrawer->setVisible(true);
     mUI->buttonTopPomodoro->setVisible(false);
+    mUI->u_labelTitle->setVisible(true);
     mUI->buttonExpand->setText(materialIconCollapse);
 
     setFixedSize(260, 425);
