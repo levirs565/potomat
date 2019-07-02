@@ -37,6 +37,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton) {
         mLastPoint = event->globalPos() - frameGeometry().topLeft();
         mCanDrag = true;
+        event->accept();
     }
 }
 
@@ -44,6 +45,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         mCanDrag = false;
+        event->accept();
     }
 }
 
@@ -51,6 +53,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton && mCanDrag) {
         move(event->globalPos() - mLastPoint);
+        event->accept();
     }
 }
 

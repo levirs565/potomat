@@ -52,6 +52,7 @@ void TimerProgressWidget::resizeEvent(QResizeEvent *event) {
     mOriginRect.setTop(0);
     mOriginRect.setWidth(width);
     mOriginRect.setHeight(height);
+    event->accept();
 }
 
 void TimerProgressWidget::paintEvent(QPaintEvent *event) {
@@ -78,4 +79,5 @@ void TimerProgressWidget::paintEvent(QPaintEvent *event) {
     }
 
     painter.end();
+    event->accept();
 }
