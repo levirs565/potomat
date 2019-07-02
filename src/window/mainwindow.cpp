@@ -228,15 +228,15 @@ void MainWindow::on_buttonDrawer_clicked()
         closeDrawer();
 }
 
-void MainWindow::on_buttonMinmize_clicked()
+void MainWindow::on_buttonTopPomodoro_clicked()
+{
+    on_buttonPomodoro_clicked();
+}
+
+void MainWindow::on_buttonExpand_clicked()
 {
     if (!mIsMinimize)
         minimizeSize();
     else
         maximizeSize();
-}
-
-void MainWindow::on_buttonTopPomodoro_clicked()
-{
-    on_buttonPomodoro_clicked();
 }

@@ -50,8 +50,8 @@ private slots:
     void on_buttonPomodoro_clicked();
     void on_resetButton_clicked();
     void on_buttonDrawer_clicked();
-    void on_buttonMinmize_clicked();
     void on_buttonTopPomodoro_clicked();
+    void on_buttonExpand_clicked();
 };
 
 #endif // MAINWINDOW_H
