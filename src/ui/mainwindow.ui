@@ -230,7 +230,7 @@ width: 40px;</string>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="timer">
        <layout class="QVBoxLayout" name="layoutTimer">
@@ -616,13 +616,13 @@ height: 50px;
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="tabSettings">
            <attribute name="title">
             <string></string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="u_labelSettings">
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -634,7 +634,7 @@ height: 50px;
              </widget>
             </item>
             <item alignment="Qt::AlignTop">
-             <widget class="QCheckBox" name="checkBox">
+             <widget class="QCheckBox" name="checkAlwaysOnTop">
               <property name="text">
                <string>Always on top</string>
               </property>

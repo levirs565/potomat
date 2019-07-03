@@ -16,6 +16,8 @@ public:
     MainWindow(QWidget *parent = 0, Configuration& config = *new Configuration());
     ~MainWindow();
 
+    void setAlwaysOnTop(bool alwaysOnTop);
+
 protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
@@ -27,12 +29,16 @@ private:
     Configuration& mConfig;
     bool mIsMinimize;
     bool mCanDrag;
+    bool mAlwaysOnTop;
+    bool mAfterStartUp;
     QPoint mLastPoint;
 
     void openDrawer();
     void closeDrawer();
     void minimizeSize();
     void maximizeSize();
+    void loadConfig();
+    void saveConfig();
 
     static const QString& materialIconExpand;
     static const QString& materialIconCollapse;
@@ -41,6 +47,8 @@ private:
     static const QString& timerArg;
     static const QString& roundArg;
     static const QChar& zeroChar;
+
+    static const QString& configAlwaysOnTop;
 
 private slots:
     void pomodoro_updateTimer(int remaining, int total);

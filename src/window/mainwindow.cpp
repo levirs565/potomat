@@ -9,9 +9,12 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
     : QMainWindow(parent),
       mPomodoro(new Pomodoro(this)),
       mUI(new Ui::MainWindow()),
-      mConfig(config)
+      mConfig(config),
+      mAfterStartUp(false)
 {
     mPomodoro->loadConfig(mConfig);
+    loadConfig();
+
     connect(mPomodoro, &Pomodoro::updateTimer,
             this, &MainWindow::pomodoro_updateTimer);
     connect(mPomodoro, &Pomodoro::updateRound,
@@ -25,11 +28,14 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
     setWindowFlag(Qt::FramelessWindowHint);
 
     mPomodoro->startIntegration();
+
+    mAfterStartUp = true;
 }
 
 MainWindow::~MainWindow()
 {
     mPomodoro->saveConfig(mConfig);
+    saveConfig();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
@@ -57,12 +63,26 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
+void MainWindow::setAlwaysOnTop(bool alwaysOnTop)
+{
+    if (alwaysOnTop == mAlwaysOnTop)
+        return;
+
+    mAlwaysOnTop = alwaysOnTop;
+    setWindowFlag(Qt::WindowStaysOnTopHint, mAlwaysOnTop);
+
+    if (mAfterStartUp)
+        show();
+}
+
 void MainWindow::openDrawer()
 {
     mUI->sliderWorkRounds->setValue(mPomodoro->getConfig(0));
     mUI->sliderWork->setValue(mPomodoro->getConfig(1));
     mUI->sliderShortBreak->setValue(mPomodoro->getConfig(2));
     mUI->sliderLongBreak->setValue(mPomodoro->getConfig(3));
+
+    mUI->checkAlwaysOnTop->setChecked(mAlwaysOnTop);
 
     mUI->stackedWidget->setCurrentIndex(1);
 
@@ -75,6 +95,8 @@ void MainWindow::closeDrawer()
     mPomodoro->setConfig(1, mUI->sliderWork->value());
     mPomodoro->setConfig(2, mUI->sliderShortBreak->value());
     mPomodoro->setConfig(3, mUI->sliderLongBreak->value());
+
+    setAlwaysOnTop(mUI->checkAlwaysOnTop->isChecked());
 
     mUI->stackedWidget->setCurrentIndex(0);
 
@@ -157,6 +179,24 @@ void MainWindow::maximizeSize()
     setFixedSize(260, 425);
 
     mIsMinimize = false;
+}
+
+const QString& MainWindow::configAlwaysOnTop = "alwaysOnTop";
+
+void MainWindow::loadConfig()
+{
+    QVariant var;
+
+    var = mConfig.getConfig(configAlwaysOnTop);
+    if (var.convert(QVariant::Bool))
+        setAlwaysOnTop(var.toBool());
+    else
+        setAlwaysOnTop(true);
+}
+
+void MainWindow::saveConfig()
+{
+    mConfig.setConfig(configAlwaysOnTop, mAlwaysOnTop);
 }
 
 const QString& MainWindow::timerArg = "%1:%2";
