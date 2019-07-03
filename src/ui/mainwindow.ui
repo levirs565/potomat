@@ -230,7 +230,7 @@ width: 40px;</string>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="timer">
        <layout class="QVBoxLayout" name="layoutTimer">
@@ -449,11 +449,10 @@ height: 50px;
     font-family: &quot;Material Icons&quot;;
     font-size: 18pt;
     height: 36px;
-	min-width: 100px;
 }</string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabTimer">
            <attribute name="title">
@@ -604,6 +603,45 @@ height: 50px;
             </item>
             <item>
              <spacer name="u_spacerTTimer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string></string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+             <widget class="QLabel" name="label_2">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Settings</string>
+              </property>
+             </widget>
+            </item>
+            <item alignment="Qt::AlignTop">
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string>Always on top</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
