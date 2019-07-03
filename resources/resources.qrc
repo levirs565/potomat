@@ -5,4 +5,7 @@
     <qresource prefix="/fonts">
         <file alias="MaterialIcons-Regular.ttf">fonts/MaterialIcons-Regular.ttf</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file alias="ic_check_white.svg">icons/ic_check_white.svg</file>
+    </qresource>
 </RCC>

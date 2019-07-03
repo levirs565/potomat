@@ -67,3 +67,22 @@ QPushButton {
 QPushButton:hover {
     background-color: #505050;
 }
+
+QCheckBox {
+    color: #ffffff;
+}
+
+QCheckBox::indicator {
+    width: 20px;
+    height: 20px;
+    background-color: #3c3c3c;
+}
+
+QCheckBox::indicator:hover {
+    background-color: #505050;
+}
+
+QCheckBox::indicator:checked {
+    image: url(":/icons/ic_check_white.svg");
+}
+
