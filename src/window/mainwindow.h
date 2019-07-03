@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QMediaPlayer>
 #include "../util/pomodoro.h"
 #include "../util/configuration.h"
 #include "ui_mainwindow.h"
@@ -26,11 +27,14 @@ protected:
 private:
     Pomodoro *mPomodoro;
     Ui::MainWindow *mUI;
+    QMediaPlayer *mMediaPlayer;
     Configuration& mConfig;
+    Pomodoro::Round mLastRound;
     bool mIsMinimize;
     bool mCanDrag;
     bool mAlwaysOnTop;
     bool mAfterStartUp;
+    bool mPlayAudio;
     QPoint mLastPoint;
 
     void openDrawer();
@@ -49,6 +53,11 @@ private:
     static const QChar& zeroChar;
 
     static const QString& configAlwaysOnTop;
+    static const QString& configPlayAudio;
+
+    static const QUrl mediaWork;
+    static const QUrl mediaShortBreak;
+    static const QUrl mediaLongBreak;
 
 private slots:
     void pomodoro_updateTimer(int remaining, int total);

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
     : QMainWindow(parent),
       mPomodoro(new Pomodoro(this)),
       mUI(new Ui::MainWindow()),
+      mMediaPlayer(new QMediaPlayer(this)),
       mConfig(config),
       mAfterStartUp(false)
 {
@@ -83,6 +84,7 @@ void MainWindow::openDrawer()
     mUI->sliderLongBreak->setValue(mPomodoro->getConfig(3));
 
     mUI->checkAlwaysOnTop->setChecked(mAlwaysOnTop);
+    mUI->checkPlayAudio->setChecked(mPlayAudio);
 
     mUI->stackedWidget->setCurrentIndex(1);
 
@@ -97,6 +99,7 @@ void MainWindow::closeDrawer()
     mPomodoro->setConfig(3, mUI->sliderLongBreak->value());
 
     setAlwaysOnTop(mUI->checkAlwaysOnTop->isChecked());
+    mPlayAudio = mUI->checkPlayAudio->isChecked();
 
     mUI->stackedWidget->setCurrentIndex(0);
 
@@ -182,6 +185,7 @@ void MainWindow::maximizeSize()
 }
 
 const QString& MainWindow::configAlwaysOnTop = "alwaysOnTop";
+const QString& MainWindow::configPlayAudio = "palyAudio";
 
 void MainWindow::loadConfig()
 {
@@ -192,11 +196,18 @@ void MainWindow::loadConfig()
         setAlwaysOnTop(var.toBool());
     else
         setAlwaysOnTop(true);
+
+    var = mConfig.getConfig(configPlayAudio);
+    if (var.convert(QVariant::Bool))
+        mPlayAudio = var.toBool();
+    else
+        mPlayAudio = true;
 }
 
 void MainWindow::saveConfig()
 {
     mConfig.setConfig(configAlwaysOnTop, mAlwaysOnTop);
+    mConfig.setConfig(configPlayAudio, mPlayAudio);
 }
 
 const QString& MainWindow::timerArg = "%1:%2";
@@ -215,22 +226,38 @@ void MainWindow::pomodoro_updateTimer(int remaining, int total)
 }
 
 const QString& MainWindow::roundArg = "%1/%2";
+const QUrl MainWindow::mediaWork = QUrl("qrc:/audios/capisci.mp3");
+const QUrl MainWindow::mediaShortBreak = QUrl("qrc:/audios/isnt-it.mp3");
+const QUrl MainWindow::mediaLongBreak = QUrl("qrc:/audios/springtime.mp3");
 
 void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
                                      int worksRound)
 {
     QString roundName;
-    if (round == Pomodoro::Work)
+    QUrl mUrl;
+
+    if (round == Pomodoro::Work) {
         roundName = "Work";
-    else if (round == Pomodoro::ShortBreak)
+        mUrl = mediaWork;
+    } else if (round == Pomodoro::ShortBreak) {
         roundName  = "Short Break";
-    else
+        mUrl = mediaShortBreak;
+    } else {
         roundName = "Long Break";
+        mUrl = mediaLongBreak;
+    }
 
     mUI->labelRoundName->setText(roundName);
     mUI->labelRound->setText(roundArg
                                 .arg(runnedRound)
                                 .arg(worksRound));
+
+    if (mPlayAudio && runnedRound > 0 && mLastRound != round) {
+        mMediaPlayer->setMedia(mUrl);
+        mMediaPlayer->play();
+
+        mLastRound = round;
+    }
 }
 
 const QString& MainWindow::materialIconPlay = QString::fromWCharArray(L"\ue037");

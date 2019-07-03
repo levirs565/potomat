@@ -8,4 +8,9 @@
     <qresource prefix="/icons">
         <file alias="ic_check_white.svg">icons/ic_check_white.svg</file>
     </qresource>
+    <qresource prefix="/audios">
+        <file alias="capisci.mp3">audios/capisci.mp3</file>
+        <file alias="isnt-it.mp3">audios/isnt-it.mp3</file>
+        <file alias="springtime.mp3">audios/springtime.mp3</file>
+    </qresource>
 </RCC>

@@ -640,6 +640,13 @@ height: 50px;
               </property>
              </widget>
             </item>
+            <item alignment="Qt::AlignTop">
+             <widget class="QCheckBox" name="checkPlayAudio">
+              <property name="text">
+               <string>Play audio when timer started</string>
+              </property>
+             </widget>
+            </item>
             <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
