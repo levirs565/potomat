@@ -53,3 +53,5 @@ RESOURCES += \
 
 FORMS += \
     src/ui/mainwindow.ui
+
+RC_ICONS = arts/icon.ico
