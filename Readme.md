@@ -1,6 +1,8 @@
 # Potomat
 [![Build status](https://ci.appveyor.com/api/projects/status/xq94ep60avl228ik?svg=true)](https://ci.appveyor.com/project/levirs565/potomat)
 
+![Potomat Icon](/arts/icon_128.png)
+
 Potomat is lightweight Pomodoro timer app. Potomar is inspired by [Pomotroid](http://github.com/Splode/pomotroid/).
 
 # Audios Notice
