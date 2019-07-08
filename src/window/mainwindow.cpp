@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
       mPomodoro(new Pomodoro(this)),
       mUI(new Ui::MainWindow()),
       mMediaPlayer(new QMediaPlayer(this)),
+      mNotificationWidget(new NotificationWidget()),
       mConfig(config),
       mAfterStartUp(false)
 {
@@ -85,6 +86,7 @@ void MainWindow::openDrawer()
 
     mUI->checkAlwaysOnTop->setChecked(mAlwaysOnTop);
     mUI->checkPlayAudio->setChecked(mPlayAudio);
+    mUI->checkShowNof->setChecked(mShowNotification);
 
     mUI->stackedWidget->setCurrentIndex(1);
 
@@ -100,6 +102,7 @@ void MainWindow::closeDrawer()
 
     setAlwaysOnTop(mUI->checkAlwaysOnTop->isChecked());
     mPlayAudio = mUI->checkPlayAudio->isChecked();
+    mShowNotification = mUI->checkShowNof->isChecked();
 
     mUI->stackedWidget->setCurrentIndex(0);
 
@@ -186,6 +189,7 @@ void MainWindow::maximizeSize()
 
 const QString& MainWindow::configAlwaysOnTop = "alwaysOnTop";
 const QString& MainWindow::configPlayAudio = "palyAudio";
+const QString& MainWindow::configShowNotification = "showNotification";
 
 void MainWindow::loadConfig()
 {
@@ -202,12 +206,19 @@ void MainWindow::loadConfig()
         mPlayAudio = var.toBool();
     else
         mPlayAudio = true;
+
+    var = mConfig.getConfig(configShowNotification);
+    if (var.convert(QVariant::Bool))
+        mShowNotification = var.toBool();
+    else
+        mShowNotification = true;
 }
 
 void MainWindow::saveConfig()
 {
     mConfig.setConfig(configAlwaysOnTop, mAlwaysOnTop);
     mConfig.setConfig(configPlayAudio, mPlayAudio);
+    mConfig.setConfig(configShowNotification, mShowNotification);
 }
 
 const QString& MainWindow::timerArg = "%1:%2";
@@ -235,16 +246,24 @@ void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
 {
     QString roundName;
     QUrl mUrl;
+    QString mNotificationTitle;
+    QString mNotificationDescription;
 
     if (round == Pomodoro::Work) {
         roundName = "Work";
         mUrl = mediaWork;
+        mNotificationTitle = "Let's work!";
+        mNotificationDescription = "It's time to work";
     } else if (round == Pomodoro::ShortBreak) {
         roundName  = "Short Break";
         mUrl = mediaShortBreak;
+        mNotificationTitle = "Let's take a short break!";
+        mNotificationDescription = "It's time to take a short break";
     } else {
         roundName = "Long Break";
         mUrl = mediaLongBreak;
+        mNotificationTitle = "Let's take a long break!";
+        mNotificationDescription = "It's time to take a long break";
     }
 
     mUI->labelRoundName->setText(roundName);
@@ -252,11 +271,18 @@ void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
                                 .arg(runnedRound)
                                 .arg(worksRound));
 
-    if (mPlayAudio && runnedRound > 0 && mLastRound != round) {
-        mMediaPlayer->setMedia(mUrl);
-        mMediaPlayer->play();
+    if (runnedRound > 0 && mLastRound != round) {
+        if (mPlayAudio) {
+            mMediaPlayer->setMedia(mUrl);
+            mMediaPlayer->play();
 
-        mLastRound = round;
+            mLastRound = round;
+        }
+
+        if (mShowNotification) {
+            mNotificationWidget->setup(mNotificationTitle, mNotificationDescription);
+            mNotificationWidget->notificationShow();
+        }
     }
 }
 

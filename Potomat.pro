@@ -32,7 +32,8 @@ SOURCES += \
     src/util/configuration.cpp \
     src/widget/timerprogresswidget.cpp \
     src/widget/timelabelwidget.cpp \
-    src/widget/swtabwidget.cpp
+    src/widget/swtabwidget.cpp \
+    src/widget/notificationwidget.cpp
 
 HEADERS += \
         src/window/mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     src/util/configuration.h \
     src/widget/timerprogresswidget.h \
     src/widget/timelabelwidget.h \
-    src/widget/swtabwidget.h
+    src/widget/swtabwidget.h \
+    src/widget/notificationwidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -52,6 +54,7 @@ RESOURCES += \
     resources/resources.qrc
 
 FORMS += \
-    src/ui/mainwindow.ui
+    src/ui/mainwindow.ui \
+    src/widget/notificationwidget.ui
 
 RC_ICONS = arts/icon.ico

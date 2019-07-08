@@ -8,6 +8,7 @@
 #include "../util/pomodoro.h"
 #include "../util/configuration.h"
 #include "ui_mainwindow.h"
+#include "../widget/notificationwidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -28,6 +29,7 @@ private:
     Pomodoro *mPomodoro;
     Ui::MainWindow *mUI;
     QMediaPlayer *mMediaPlayer;
+    NotificationWidget *mNotificationWidget;
     Configuration& mConfig;
     Pomodoro::Round mLastRound;
     bool mIsMinimize;
@@ -35,6 +37,7 @@ private:
     bool mAlwaysOnTop;
     bool mAfterStartUp;
     bool mPlayAudio;
+    bool mShowNotification;
     QPoint mLastPoint;
 
     void openDrawer();
@@ -54,6 +57,7 @@ private:
 
     static const QString& configAlwaysOnTop;
     static const QString& configPlayAudio;
+    static const QString& configShowNotification;
 
     static const QUrl mediaWork;
     static const QUrl mediaShortBreak;
