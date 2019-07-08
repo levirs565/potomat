@@ -188,7 +188,7 @@ void MainWindow::maximizeSize()
 }
 
 const QString& MainWindow::configAlwaysOnTop = "alwaysOnTop";
-const QString& MainWindow::configPlayAudio = "palyAudio";
+const QString& MainWindow::configPlayAudio = "playAudio";
 const QString& MainWindow::configShowNotification = "showNotification";
 
 void MainWindow::loadConfig()
