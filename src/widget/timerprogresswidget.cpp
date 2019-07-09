@@ -75,7 +75,7 @@ QColor TimerProgressWidget::getFillColorShortBreak()
 
 void TimerProgressWidget::setFillColorLongBreak(QColor color)
 {
-    mFillColorShortBreak = color;
+    mFillColorLongBreak = color;
     updateFillColor();
 }
 
@@ -111,7 +111,7 @@ void TimerProgressWidget::updateFillColor()
         color = mFillColorWork;
     else if (mRound == Pomodoro::ShortBreak)
         color = mFillColorShortBreak;
-    else
+    else if (mRound == Pomodoro::LongBreak)
         color = mFillColorLongBreak;
 
     mFillPen.setColor(color);
