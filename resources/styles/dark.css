@@ -1,86 +1,96 @@
-#topbar {
-    background-color: #3c3c3c;
+#topbar,
+QTabBar::tab,
+QSlider::groove:horizontal,
+QPushButton,
+QCheckBox::indicator{
+    /* Grey 800 */
+    background-color: #424242;
 }
 
-#topbar > QPushButton {
-    color: #cccccc;
-}
-
-#topbar > #buttonClose:hover {
-    background-color: #d71526;
-    color: #fcf1f2;
+QTabBar::tab:hover,
+QPushButton:hover,
+QCheckBox::indicator:hover {
+    /* Grey 700 */
+    background-color: #616161;
 }
 
 QMainWindow,
-NotificationWidget {
-    background-color: #252526;
-}
-
+NotificationWidget,
 QTabWidget > QWidget,
-QTabWidget::pane {
-    background-color: #1e1e1e;
+QTabWidget::pane,
+QTabBar::tab:selected{
+    /* Grey 900 */
+    background-color: #212121;
 }
 
-QLabel {
-    color: #ffffff;
-}
-
+#topbar > QPushButton,
 QTabBar::tab {
-    color: #969696;
-    background-color: #2d2d2d;
+    /* Grey 400 */
+    color: #bdbdbd;
 }
 
-QTabBar::tab:selected {
-    background-color: #1e1e1e;
-    color: #ffffff;
+#topbar > QPushButton:hover,
+QTabBar::tab:selected,
+QLabel,
+QPushButton,
+QCheckBox{
+    /* Grey 50 */
+    color: #fafafa;
+}
+
+#topbar > #buttonClose:hover {
+    /* Red 700 */
+    background-color: #d32f2f;
 }
 
 QPushButton#buttonPomodoro {
-    color: #adadad;
-    border-color: #adadad;
+    /* Grey 400 */
+    color: #bdbdbd;
+    border-color: #bdbdbd;
 }
 
 QPushButton#buttonPomodoro:hover {
-    color: #ffffff;
-    border-color: #ffffff;
+    /* Grey 50 */
+    color: #fafafa;
+    border-color: #fafafa;
 }
 
 QSlider::groove:horizontal {
-    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-    background-color: #3c3c3c;
+    height: 2px;
 }
 
 QSlider::handle:horizontal {
-    background-color: #007acc;
+    /* Grey 500 */
+    background-color: #9e9e9e;
     border-radius: 10px;
     width: 20;
-    margin: -10px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    margin: -10px 0;
+}
+
+QSlider#sliderWork::handle:horizontal {
+    /* Red 500 */
+    background-color: #f44336;
+}
+
+QSlider#sliderShortBreak::handle:horizontal {
+    /* Green 500*/
+    background-color: #4caf50;
+}
+
+QSlider#sliderLongBreak::handle:horizontal {
+    /* Blue 500 */
+    background-color: #0d47a1;
 }
 
 QPushButton {
-    background-color: #3c3c3c;
     border: none;
     min-height: 21px;
     min-width: 80px;
-    color: #ffffff;
-}
-
-QPushButton:hover {
-    background-color: #505050;
-}
-
-QCheckBox {
-    color: #ffffff;
 }
 
 QCheckBox::indicator {
     width: 20px;
     height: 20px;
-    background-color: #3c3c3c;
-}
-
-QCheckBox::indicator:hover {
-    background-color: #505050;
 }
 
 QCheckBox::indicator:checked {
@@ -89,6 +99,10 @@ QCheckBox::indicator:checked {
 
 TimerProgressWidget {
     qproperty-background: #3c3c3c;
-    qproperty-fillColorWork: #d71526;
-    qproperty-fillColorShortBreak: #007acc;
+    /* Red 500 */
+    qproperty-fillColorWork: #f44336;
+    /* Green 500 */
+    qproperty-fillColorShortBreak: #4caf50;
+    /* Blue 500 */
+    qproperty-fillColorLongBreak: #0d47a1;
 }
