@@ -4,14 +4,18 @@
 
 TimerProgressWidget::TimerProgressWidget(QWidget *parent)
     : QWidget(parent),
-      mType(Dial)
+      mType(Dial),
+      mRound(Pomodoro::Work)
 {
-    mBGPen.setColor("#858c99");
+    mBGPen.setColor("#ffffff");
     mBGPen.setWidth(2);
 
-    mFillPen.setColor("#ff4e4d");
+    mFillColorWork = mFillColorShortBreak = mFillColorLongBreak = "#ffffff";
+
     mFillPen.setWidth(10);
     mFillPen.setCapStyle(Qt::RoundCap);
+
+    updateFillColor();
 }
 
 void TimerProgressWidget::setPercent(float percent) {
@@ -24,15 +28,60 @@ float TimerProgressWidget::getPercent()
     return mPercent;
 }
 
-void TimerProgressWidget::setFillColor(QColor color)
+void TimerProgressWidget::setRound(Pomodoro::Round round)
 {
-    mFillPen.setColor(color);
+    mRound = round;
+    updateFillColor();
 }
 
 void TimerProgressWidget::setType(TimerProgressWidget::Type type)
 {
     mType = type;
     update();
+}
+
+void TimerProgressWidget::setBackgroundColor(QColor color)
+{
+    mBGPen.setColor(color);
+    update();
+}
+
+QColor TimerProgressWidget::getBackgroundColor()
+{
+    return mBGPen.color();
+}
+
+void TimerProgressWidget::setFillColorWork(QColor color)
+{
+    mFillColorWork = color;
+    updateFillColor();
+}
+
+QColor TimerProgressWidget::getFillColorWork()
+{
+    return mFillColorWork;
+}
+
+void TimerProgressWidget::setFillColorShortBreak(QColor color)
+{
+    mFillColorShortBreak = color;
+    updateFillColor();
+}
+
+QColor TimerProgressWidget::getFillColorShortBreak()
+{
+    return mFillColorShortBreak;
+}
+
+void TimerProgressWidget::setFillColorLongBreak(QColor color)
+{
+    mFillColorShortBreak = color;
+    updateFillColor();
+}
+
+QColor TimerProgressWidget::getFillColorLongBreak()
+{
+    return mFillColorLongBreak;
 }
 
 void TimerProgressWidget::resizeEvent(QResizeEvent *event) {
@@ -53,6 +102,20 @@ void TimerProgressWidget::resizeEvent(QResizeEvent *event) {
     mOriginRect.setWidth(width);
     mOriginRect.setHeight(height);
     event->accept();
+}
+
+void TimerProgressWidget::updateFillColor()
+{
+    QColor color;
+    if (mRound == Pomodoro::Work)
+        color = mFillColorWork;
+    else if (mRound == Pomodoro::ShortBreak)
+        color = mFillColorShortBreak;
+    else
+        color = mFillColorLongBreak;
+
+    mFillPen.setColor(color);
+    update();
 }
 
 void TimerProgressWidget::paintEvent(QPaintEvent *event) {

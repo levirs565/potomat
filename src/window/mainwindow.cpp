@@ -270,6 +270,7 @@ void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
     mUI->labelRound->setText(roundArg
                                 .arg(runnedRound)
                                 .arg(worksRound));
+    mUI->timerPomodoro->setRound(round);
 
     if (runnedRound > 0 && mLastRound != round) {
         if (mPlayAudio) {

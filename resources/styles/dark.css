@@ -87,3 +87,8 @@ QCheckBox::indicator:checked {
     image: url(":/icons/ic_check_white.svg");
 }
 
+TimerProgressWidget {
+    qproperty-background: #3c3c3c;
+    qproperty-fillColorWork: #d71526;
+    qproperty-fillColorShortBreak: #007acc;
+}
