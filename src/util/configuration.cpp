@@ -38,7 +38,6 @@ void Configuration::setConfig(QString name, QVariant value)
 
 void Configuration::load()
 {
-    qDebug() << "Loading configuration from" << mConfigLocation;
     QFile fl(mConfigLocation);
 
     if (fl.exists() && fl.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -63,7 +62,6 @@ void Configuration::load()
 
 void Configuration::save()
 {
-    qDebug() << "Saving configuration to" << mConfigLocation;
     QFile fl(mConfigLocation);
 
     makeDir(mConfigLocation);

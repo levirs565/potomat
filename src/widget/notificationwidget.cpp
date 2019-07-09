@@ -89,7 +89,6 @@ void NotificationWidget::alphaAnimationFinished()
 {
     if (mCloseAfterFinished) {
         close();
-        qDebug() << "Close";
     }
 
     mCloseAfterFinished = false;
