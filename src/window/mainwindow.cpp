@@ -91,6 +91,8 @@ void MainWindow::openDrawer()
     mUI->stackedWidget->setCurrentIndex(1);
 
     mUI->buttonExpand->setEnabled(false);
+
+    mUI->buttonDrawer->setText(QString::fromWCharArray(L"\ue5c4"));
 }
 
 void MainWindow::closeDrawer()
@@ -107,6 +109,8 @@ void MainWindow::closeDrawer()
     mUI->stackedWidget->setCurrentIndex(0);
 
     mUI->buttonExpand->setEnabled(true);
+
+    mUI->buttonDrawer->setText(QString::fromWCharArray(L"\ue5d2"));
 }
 
 const QString& MainWindow::materialIconExpand = QString::fromWCharArray(L"\ue316");
