@@ -33,6 +33,8 @@ init:
 
     Invoke-CmdScript "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" ${Env:PLATFORM}
 
+    choco install jom
+
 before_build:
 - ps: |-
     & qmake
@@ -75,11 +77,11 @@ build_script:
         }
     }
     
-    exec { nmake release }
+    & jom release
 
 after_build:
 - ps: |-
-    & nmake release-clean
+    & jom release-clean
 
     Set-Location -Path release
     windeployqt --release --no-opengl-sw --no-compiler-runtime ./
