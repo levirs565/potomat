@@ -39,7 +39,7 @@ before_build:
 
 build_script:
 - ps: |-
-    & nmake release
+    & nmake release 2> $null
 
 after_build:
 - ps: |-
