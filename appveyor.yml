@@ -77,7 +77,7 @@ build_script:
         }
     }
     
-    & jom /S release
+    & jom release 2>&1
 
 after_build:
 - ps: |-
