@@ -53,7 +53,7 @@ after_build:
 
     $DeployName = ""
 
-    if ($Env:APPVEYOR_REPO_TAG -eq false) {
+    if ($Env:APPVEYOR_REPO_TAG -eq "false") {
       Write-Output "Skipping deployment for this branch..."
       Exit-AppveyorBuild
     } else {
