@@ -79,7 +79,7 @@ build_script:
 
 after_build:
 - ps: |-
-    nmake clean
+    & nmake release-clean
 
     Set-Location -Path release
     windeployqt --release --no-opengl-sw --no-compiler-runtime ./
