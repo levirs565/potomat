@@ -35,15 +35,15 @@ init:
 
 before_build:
 - ps: |-
-    qmake
+    & qmake
 
 build_script:
 - ps: |-
-    nmake release
+    & nmake release
 
 after_build:
 - ps: |-
-    nmake clean
+    & nmake clean
 
     Set-Location -Path release
     windeployqt --release --no-opengl-sw --no-compiler-runtime ./
@@ -62,7 +62,7 @@ after_build:
 
     Write-Output "Deploy name " + $DeployName
 
-    7z a -mx=9 "dist\${DeployName}.zip" release
+    & 7z a -mx=9 "dist\${DeployName}.zip" release
 
 artifacts:
 - path: dist/*
