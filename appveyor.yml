@@ -58,15 +58,17 @@ after_build:
     $DeployName = ""
 
     if ($Env:APPVEYOR_REPO_TAG -eq "false") {
-      $DeployName = "${Env:APPVEYOR_PROJECT_NAME}-${Env:APPVEYOR_REPO_COMMIT}-win-${Env:PLATFORM}";
+      $DeployName = "${Env:APPVEYOR_PROJECT_NAME}-${Env:APPVEYOR_REPO_COMMIT}-win-${Env:PLATFORM}"
+      $AppVer = ${Env:APPVEYOR_REPO_COMMIT}
     } else {
       $DeployName = "${Env:APPVEYOR_PROJECT_NAME}-${Env:APPVEYOR_REPO_BRANCH}-win-${Env:PLATFORM}"
+      $AppVer = ${Env:APPVEYOR_REPO_BRANCH}
     }
 
     Write-Output "Deploy name ${DeployName}"
 
     & 7z a -mx=9 "dist\${DeployName}.zip" release
-    & iscc "-DCOMPILE_${Env:PLATFORM}" "-DOUTPUT_NAME=..\..\dist\${DeployName}"  installers\windows\setup.iss
+    & iscc /Odist "-F${DeployName}" "-DCOMPILE_${Env:PLATFORM}" "-DAPP_VER=${AppVer}" installers\windows\setup.iss
 
 artifacts:
 - path: dist/*
