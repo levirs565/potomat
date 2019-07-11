@@ -2,7 +2,6 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Potomat"
-#define MyAppVersion "0.4"
 #define MyAppExeName "Potomat.exe"
 
 [Setup]
@@ -10,14 +9,13 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{5E6C9BB9-A4FC-4A79-99A1-E852388D3391}
 AppName={#MyAppName}
-AppVersion={#MyAppVersion}
+AppVersion={#APP_VER}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=..\..\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename={#OUTPUT_NAME}
 Compression=lzma
 SolidCompression=yes
 
