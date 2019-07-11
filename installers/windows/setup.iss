@@ -5,12 +5,6 @@
 #define MyAppVersion "0.4"
 #define MyAppExeName "Potomat.exe"
 
-#ifdef COMPILE_X64
-  #define ARCH "x86_64"
-#else
-  #define ARCH "x86"
-#endif
-
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
@@ -23,7 +17,7 @@ DisableProgramGroupPage=yes
 LicenseFile=..\..\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename={#MyAppName}-setup-{#MyAppVersion}-{#ARCH}
+OutputBaseFilename={#OUTPUT_NAME}
 Compression=lzma
 SolidCompression=yes
 
