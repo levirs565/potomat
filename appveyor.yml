@@ -34,6 +34,7 @@ init:
     Invoke-CmdScript "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" ${Env:PLATFORM}
 
     & choco install jom
+    & choco install InnoSetup
 
 before_build:
 - ps: |-
