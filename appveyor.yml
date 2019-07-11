@@ -66,6 +66,7 @@ after_build:
     Write-Output "Deploy name ${DeployName}"
 
     & 7z a -mx=9 "dist\${DeployName}.zip" release
+    & iscc "-DCOMPILE_${Env:PLATFORM}" "-DOUTPUT_NAME=..\..\dist\${DeployName}"  installers\windows\setup.iss
 
 artifacts:
 - path: dist/*
