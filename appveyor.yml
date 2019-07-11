@@ -82,6 +82,3 @@ deploy:
   draft: true
   on:
     APPVEYOR_REPO_TAG: true
-cache:
-  - C:\Program Files (x86)\Inno Setup 6
-  - C:\ProgramData\chocolatey
