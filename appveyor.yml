@@ -38,6 +38,7 @@ install:
     & choco install jom
     & choco install innosetup
     $Env:Path = "C:\Program Files (x86)\Inno Setup 6\;${Env:PATH}"
+    & choco list -lo
 
 before_build:
 - ps: |-
