@@ -71,8 +71,7 @@ after_build:
     Write-Output "Deploy name ${DeployName}"
 
     & 7z a -mx=9 "dist\${DeployName}.zip" release
-    & cmd /c where iscc
-    & iscc /Odist "-F${DeployName}" "-DCOMPILE_${Env:PLATFORM}" "-DAPP_VER=wedus" installers\windows\setup.iss
+    & iscc /Odist "-F${DeployName}" "-DCOMPILE_${Env:PLATFORM}" "-DAPP_VER=${AppVer}" installers\windows\setup.iss
 
 artifacts:
 - path: dist/*
@@ -83,3 +82,6 @@ deploy:
   draft: true
   on:
     APPVEYOR_REPO_TAG: true
+cache:
+  - C:\ProgramData\chocolatey
+  - C:\Program Files (x86)\Inno Setup 6
