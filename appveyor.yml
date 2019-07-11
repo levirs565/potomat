@@ -38,7 +38,6 @@ install:
     & choco install jom
     & choco install innosetup
     $Env:Path = "C:\Program Files (x86)\Inno Setup 6\;${Env:PATH}"
-    & choco list -lo
 
 before_build:
 - ps: |-
@@ -83,5 +82,3 @@ deploy:
   draft: true
   on:
     APPVEYOR_REPO_TAG: true
-cache:
-  - C:\Users\appveyor\AppData\Local\Temp\chocolatey\
