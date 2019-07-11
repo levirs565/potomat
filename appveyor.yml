@@ -82,5 +82,5 @@ deploy:
   draft: true
   on:
     APPVEYOR_REPO_TAG: true
-- cache:
+cache:
   - C:\Users\appveyor\AppData\Local\Temp\chocolatey\
