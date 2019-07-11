@@ -37,6 +37,7 @@ install:
 - ps: |-
     & choco install jom
     & choco install InnoSetup
+    & choco list -lo
 
 before_build:
 - ps: |-
