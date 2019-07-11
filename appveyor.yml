@@ -83,5 +83,5 @@ deploy:
   on:
     APPVEYOR_REPO_TAG: true
 cache:
-  - C:\ProgramData\chocolatey
   - C:\Program Files (x86)\Inno Setup 6
+  - C:\ProgramData\chocolatey
