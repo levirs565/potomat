@@ -33,7 +33,7 @@ init:
 
     Invoke-CmdScript "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" ${Env:PLATFORM}
 
-    choco install jom
+    & choco install jom
 
 before_build:
 - ps: |-
@@ -41,42 +41,6 @@ before_build:
 
 build_script:
 - ps: |-
-    function exec
-    {
-        param
-        (
-            [ScriptBlock] $ScriptBlock,
-            [string] $StderrPrefix = "",
-            [int[]] $AllowedExitCodes = @(0)
-        )
-     
-        $backupErrorActionPreference = $script:ErrorActionPreference
-     
-        $script:ErrorActionPreference = "Continue"
-        try
-        {
-            & $ScriptBlock 2>&1 | ForEach-Object -Process `
-                {
-                    if ($_ -is [System.Management.Automation.ErrorRecord])
-                    {
-                        "$StderrPrefix$_"
-                    }
-                    else
-                    {
-                        "$_"
-                    }
-                }
-            if ($AllowedExitCodes -notcontains $LASTEXITCODE)
-            {
-                throw "Execution failed with exit code $LASTEXITCODE"
-            }
-        }
-        finally
-        {
-            $script:ErrorActionPreference = $backupErrorActionPreference
-        }
-    }
-    
     & cmd /c "jom release 2>&1"
 
 after_build:
@@ -84,8 +48,8 @@ after_build:
     & cmd /c "jom release-clean 2>&1"
 
     Set-Location -Path release
-    windeployqt --release --no-opengl-sw --no-compiler-runtime ./
-    dir
+    & windeployqt --release --no-opengl-sw --no-compiler-runtime ./
+    & dir
     Set-Location -Path ..
 
     New-Item -ItemType Directory -Force -Path dist | Out-Null
@@ -93,8 +57,7 @@ after_build:
     $DeployName = ""
 
     if ($Env:APPVEYOR_REPO_TAG -eq "false") {
-      Write-Output "Skipping deployment for this branch..."
-      Exit-AppveyorBuild
+      $DeployName = "${Env:APPVEYOR_PROJECT_NAME}-${Env:APPVEYOR_REPO_COMMIT}-win-${Env:PLATFORM}";
     } else {
       $DeployName = "${Env:APPVEYOR_PROJECT_NAME}-${Env:APPVEYOR_REPO_BRANCH}-win-${Env:PLATFORM}"
     }
