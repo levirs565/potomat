@@ -62,7 +62,7 @@ after_build:
       $DeployName = "${Env:APPVEYOR_PROJECT_NAME}-${Env:APPVEYOR_REPO_BRANCH}-win-${Env:PLATFORM}"
     }
 
-    Write-Output "Deploy name " + $DeployName
+    Write-Output "Deploy name ${DeployName}"
 
     & 7z a -mx=9 "dist\${DeployName}.zip" release
 
