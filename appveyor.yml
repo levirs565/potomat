@@ -71,6 +71,7 @@ after_build:
     Write-Output "Deploy name ${DeployName}"
 
     & 7z a -mx=9 "dist\${DeployName}.zip" release
+    & where iscc
     & iscc /Odist "-F${DeployName}" "-DCOMPILE_${Env:PLATFORM}" "-DAPP_VER=wedus" installers\windows\setup.iss
 
 artifacts:
