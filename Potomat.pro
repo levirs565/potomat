@@ -53,6 +53,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     resources/resources.qrc
 
+INCLUDEPATH += src
+
 FORMS += \
     src/ui/mainwindow.ui \
     src/widget/notificationwidget.ui

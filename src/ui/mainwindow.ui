@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>415</height>
+    <width>327</width>
+    <height>423</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -457,7 +457,7 @@ height: 50px;
 }</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tabTimer">
            <attribute name="title">
@@ -745,8 +745,8 @@ height: 50px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>260</width>
-     <height>20</height>
+     <width>327</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -755,13 +755,13 @@ height: 50px;
   <customwidget>
    <class>TimerProgressWidget</class>
    <extends>QWidget</extends>
-   <header>../widget/timerprogresswidget.h</header>
+   <header location="global">widget/timerprogresswidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>TimeLabelWidget</class>
    <extends>QLabel</extends>
-   <header>../widget/timelabelwidget.h</header>
+   <header location="global">widget/timelabelwidget.h</header>
    <slots>
     <slot>setMinute(int)</slot>
    </slots>
@@ -769,7 +769,7 @@ height: 50px;
   <customwidget>
    <class>SWTabWidget</class>
    <extends>QTabWidget</extends>
-   <header>../widget/swtabwidget.h</header>
+   <header location="global">widget/swtabwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -820,22 +820,6 @@ height: 50px;
     <hint type="destinationlabel">
      <x>162</x>
      <y>234</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sliderWorkRounds</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>labelVWorkRounds</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>163</x>
-     <y>313</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>162</x>
-     <y>293</y>
     </hint>
    </hints>
   </connection>

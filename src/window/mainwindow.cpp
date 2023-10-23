@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QImageReader>
 #include <QMouseEvent>
+#include <QAudioOutput>
 #include "mainwindow.h"
 #include "../widget/swtabbar.h"
 
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
       mConfig(config),
       mAfterStartUp(false)
 {
+    mMediaPlayer->setAudioOutput(new QAudioOutput());
     mPomodoro->loadConfig(mConfig);
     loadConfig();
 
@@ -25,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent, Configuration& config)
             this, &MainWindow::pomodoro_updateState);
 
     mUI->setupUi(this);
+    connect(mUI->sliderWorkRounds, &QSlider::valueChanged, mUI->labelVWorkRounds, qOverload<int>(&QLabel::setNum));
     maximizeSize();
 
     setWindowFlag(Qt::FramelessWindowHint);
@@ -123,7 +126,7 @@ void MainWindow::minimizeSize()
     mUI->timerPomodoro->setMaximumSize(100000, 100000);
     mUI->timerPomodoro->setType(TimerProgressWidget::Horizontal);
     mUI->layoutTimer->setAlignment(mUI->timerPomodoro, Qt::Alignment());
-    mUI->layoutTimer->setMargin(0);
+    mUI->layoutTimer->setContentsMargins(0, 0, 0, 0);
 
     mUI->layoutPomodoro->setDirection(QBoxLayout::LeftToRight);
     mUI->u_spacerPomodoro_1->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Fixed);
@@ -162,7 +165,7 @@ void MainWindow::maximizeSize()
     mUI->timerPomodoro->setMaximumSize(220, 220);
     mUI->timerPomodoro->setType(TimerProgressWidget::Dial);
     mUI->layoutTimer->setAlignment(mUI->timerPomodoro, Qt::AlignHCenter|Qt::AlignTop);
-    mUI->layoutTimer->setMargin(9);
+    mUI->layoutTimer->setContentsMargins(9, 9, 9, 9);
 
     mUI->layoutPomodoro->setDirection(QBoxLayout::TopToBottom);
     mUI->u_spacerPomodoro_1->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -278,7 +281,7 @@ void MainWindow::pomodoro_updateRound(Pomodoro::Round round, int runnedRound,
 
     if (runnedRound > 0 && mLastRound != round) {
         if (mPlayAudio) {
-            mMediaPlayer->setMedia(mUrl);
+            mMediaPlayer->setSource(mUrl);
             mMediaPlayer->play();
 
             mLastRound = round;
